@@ -2,6 +2,7 @@
 import "./globals.css";
 import theme from "./theme/themes";
 import { ThemeProvider, CssBaseline } from "@mui/material";
+import Provider from "@/components/Provider";
 
 export default function RootLayout({
   children,
@@ -17,7 +18,9 @@ export default function RootLayout({
       </head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <body>{children}</body>
+        <body>
+          <Provider>{children}</Provider>
+        </body>
       </ThemeProvider>
     </html>
   );
