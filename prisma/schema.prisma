@@ -35,15 +35,31 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  accounts      Account[]
-  sessions      Session[]
+  id               String            @id @default(cuid())
+  name             String?
+  email            String?           @unique
+  emailVerified    DateTime?
+  image            String?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  accounts         Account[]
+  sessions         Session[]
+  dogs             Dog[]
+  medicalDocuments MedicalDocument[]
+}
+
+model Dog {
+  id               Int                @id @default(autoincrement())
+  name             String
+  breed            String
+  birthDate        DateTime?
+  ownerId          String
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  owner            User               @relation(fields: [ownerId], references: [id])
+  vaccines         Vaccine[]
+  trainingVideos   DogTrainingVideo[]
+  medicalDocuments MedicalDocument[]
 }
 
 model VerificationRequest {
@@ -55,4 +71,54 @@ model VerificationRequest {
   updatedAt  DateTime @updatedAt
 
   @@unique([identifier, token])
+}
+
+model TrainingVideo {
+  id          Int                @id @default(autoincrement())
+  title       String
+  description String
+  url         String
+  category    String
+  energyLevel String
+  size        String
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  dogs        DogTrainingVideo[]
+}
+
+model DogTrainingVideo {
+  id              Int           @id @default(autoincrement())
+  dogId           Int
+  trainingVideoId Int
+  isCompleted     Boolean       @default(false)
+  dog             Dog           @relation(fields: [dogId], references: [id])
+  trainingVideo   TrainingVideo @relation(fields: [trainingVideoId], references: [id])
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@unique([dogId, trainingVideoId])
+}
+
+model Vaccine {
+  id        Int      @id @default(autoincrement())
+  name      String
+  date      DateTime
+  dogId     Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dog       Dog      @relation(fields: [dogId], references: [id])
+}
+
+model MedicalDocument {
+  id          Int      @id @default(autoincrement())
+  dogId       Int
+  userId      String
+  title       String
+  description String?
+  fileType    String
+  fileUrl     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  dog         Dog      @relation(fields: [dogId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
 }
