@@ -121,6 +121,7 @@ model MedicalDocument {
   updatedAt   DateTime @updatedAt
   dog         Dog      @relation(fields: [dogId], references: [id])
   user        User     @relation(fields: [userId], references: [id])
+}
 
 model DogBreed {
   id                   Int    @id @default(autoincrement())
