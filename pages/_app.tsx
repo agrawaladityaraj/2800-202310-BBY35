@@ -39,7 +39,7 @@ theme = responsiveFontSizes(theme);
 export default function MyAppBase({
   Component,
   pageProps: { session, ...pageProps },
-}) {
+}: any) {
   return (
     <SessionProvider session={session}>
       <State>
@@ -53,8 +53,8 @@ export default function MyAppBase({
               backgroundColor: (theme) => theme.palette.primary.main,
             }}
           >
-          <Navbar />
-          <Component {...pageProps} />
+            <Navbar />
+            <Component {...pageProps} />
             <Footer />
             <Alert />
           </Box>
