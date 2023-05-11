@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
 }
 
 model Account {
@@ -49,7 +49,7 @@ model User {
 }
 
 model Dog {
-  id               Int                @id @default(autoincrement())
+  id               String                @id @default(cuid())
   name             String
   breed            String
   birthDate        DateTime?
@@ -74,7 +74,7 @@ model VerificationRequest {
 }
 
 model TrainingVideo {
-  id          Int                @id @default(autoincrement())
+  id          String                @id @default(cuid())
   title       String
   description String
   url         String
@@ -87,9 +87,9 @@ model TrainingVideo {
 }
 
 model DogTrainingVideo {
-  id              Int           @id @default(autoincrement())
-  dogId           Int
-  trainingVideoId Int
+  id              String           @id @default(cuid())
+  dogId           String
+  trainingVideoId String
   isCompleted     Boolean       @default(false)
   dog             Dog           @relation(fields: [dogId], references: [id])
   trainingVideo   TrainingVideo @relation(fields: [trainingVideoId], references: [id])
@@ -100,18 +100,18 @@ model DogTrainingVideo {
 }
 
 model Vaccine {
-  id        Int      @id @default(autoincrement())
+  id        String      @id @default(cuid())
   name      String
   date      DateTime
-  dogId     Int
+  dogId     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   dog       Dog      @relation(fields: [dogId], references: [id])
 }
 
 model MedicalDocument {
-  id          Int      @id @default(autoincrement())
-  dogId       Int
+  id          String      @id @default(cuid())
+  dogId       String
   userId      String
   title       String
   description String?
@@ -124,7 +124,7 @@ model MedicalDocument {
 }
 
 model DogBreed {
-  id                   Int    @id @default(autoincrement())
+  id                   String    @id @default(cuid())
   breed                String
   countryOfOrigin      String
   furColor             String

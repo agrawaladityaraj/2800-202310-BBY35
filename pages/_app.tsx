@@ -7,7 +7,10 @@ import {
 import { CssBaseline, Box } from "@mui/material";
 
 import "@/styles/globals.css";
+import State from "@/Context/State";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Alert from "@/components/Alert";
 
 let theme = createTheme({
   typography: {
@@ -39,22 +42,24 @@ export default function MyAppBase({
 }) {
   return (
     <SessionProvider session={session}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Box
-          sx={{
-            minHeight: "100vh",
-            display: "flex",
-            flexDirection: "column",
-            backgroundColor: (theme) => theme.palette.primary.main,
-          }}
-        >
+      <State>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Box
+            sx={{
+              minHeight: "100vh",
+              display: "flex",
+              flexDirection: "column",
+              backgroundColor: (theme) => theme.palette.primary.main,
+            }}
+          >
           <Navbar />
           <Component {...pageProps} />
-          {/* <Footer /> */}
-          {/* <SystemAlert /> */}
-        </Box>
-      </ThemeProvider>
+            <Footer />
+            <Alert />
+          </Box>
+        </ThemeProvider>
+      </State>
     </SessionProvider>
   );
 }
