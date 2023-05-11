@@ -1,4 +1,4 @@
-import React from "react";
+import { SessionProvider } from "next-auth/react";
 import {
   createTheme,
   responsiveFontSizes,
@@ -36,25 +36,30 @@ let theme = createTheme({
 });
 theme = responsiveFontSizes(theme);
 
-export default function MyAppBase({ Component, pageProps }: any) {
+export default function MyAppBase({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   return (
-    <State>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Box
-          sx={{
-            minHeight: "100vh",
-            display: "flex",
-            flexDirection: "column",
-            backgroundColor: (theme) => theme.palette.primary.main,
-          }}
-        >
+    <SessionProvider session={session}>
+      <State>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Box
+            sx={{
+              minHeight: "100vh",
+              display: "flex",
+              flexDirection: "column",
+              backgroundColor: (theme) => theme.palette.primary.main,
+            }}
+          >
           <Navbar />
           <Component {...pageProps} />
-          <Footer />
-          <Alert />
-        </Box>
-      </ThemeProvider>
-    </State>
+            <Footer />
+            <Alert />
+          </Box>
+        </ThemeProvider>
+      </State>
+    </SessionProvider>
   );
 }
