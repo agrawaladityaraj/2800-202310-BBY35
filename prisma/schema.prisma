@@ -49,7 +49,7 @@ model User {
 }
 
 model Dog {
-  id               String                @id @default(cuid())
+  id               String             @id @default(cuid())
   name             String
   breed            String
   birthDate        DateTime?
@@ -74,7 +74,7 @@ model VerificationRequest {
 }
 
 model TrainingVideo {
-  id          String                @id @default(cuid())
+  id          String             @id @default(cuid())
   title       String
   description String
   url         String
@@ -87,7 +87,7 @@ model TrainingVideo {
 }
 
 model DogTrainingVideo {
-  id              String           @id @default(cuid())
+  id              String        @id @default(cuid())
   dogId           String
   trainingVideoId String
   isCompleted     Boolean       @default(false)
@@ -100,7 +100,7 @@ model DogTrainingVideo {
 }
 
 model Vaccine {
-  id        String      @id @default(cuid())
+  id        String   @id @default(cuid())
   name      String
   date      DateTime
   dogId     String
@@ -110,7 +110,7 @@ model Vaccine {
 }
 
 model MedicalDocument {
-  id          String      @id @default(cuid())
+  id          String   @id @default(cuid())
   dogId       String
   userId      String
   title       String
@@ -124,13 +124,13 @@ model MedicalDocument {
 }
 
 model DogBreed {
-  id                   String    @id @default(cuid())
+  id                   String @id @default(cuid())
   breed                String
   countryOfOrigin      String
   furColor             String
-  heightIn             Float
+  heightIn             String
   colorOfEyes          String
-  longevityYrs         Float
+  longevityYrs         String
   characterTraits      String
   commonHealthProblems String
 }
