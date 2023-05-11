@@ -27,12 +27,12 @@ export default function Welcome() {
         Welcome to IntelliPaws
       </Typography>
       <Stack direction="row" spacing={2} mt={2}>
-        <Link href="/signup" passHref>
+        <Link href="/" passHref>
           <Button variant="contained" color="secondary" size="large">
             Signup
           </Button>
         </Link>
-        <Link href="/login" passHref>
+        <Link href="/" passHref>
           <Button variant="contained" color="secondary" size="large">
             Login
           </Button>

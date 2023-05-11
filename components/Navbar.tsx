@@ -115,21 +115,23 @@ const Navbar: NextPage = () => {
                   }}
                 >
                   <Link href="/" passHref={true}>
-                    {/* <div style={{ marginRight: "1em" }}> */}
-                    <Image
-                      style={{ marginRight: "1em" }}
-                      src={Logo}
-                      height={40}
-                      width={40}
-                      alt="Logo"
-                    />
-                    {/* </div> */}
+                    <div style={{ marginRight: "1em" }}>
+                      <Image src={Logo} height={40} width={40} alt="Logo" />
+                    </div>
                   </Link>
                   {leftNavLinks.map((navLink: INavLink) => (
-                    <Link key={navLink.href} href={navLink.href}>
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      key={navLink.href}
+                      href={navLink.href}
+                    >
                       <Typography
                         variant="body1"
-                        sx={{ mr: 2, textDecoration: "none" }}
+                        sx={{
+                          mr: 2,
+                          textDecoration: "none",
+                          color: (theme) => theme.palette.common.white,
+                        }}
                       >
                         {navLink.label}
                       </Typography>
@@ -139,6 +141,7 @@ const Navbar: NextPage = () => {
                   <Box display="flex">
                     {rightNavLinks.map((navLink: INavLink, index: number) => (
                       <Link
+                        style={{ textDecoration: "none" }}
                         key={navLink.href}
                         href={navLink.href}
                         passHref={true}
@@ -147,6 +150,7 @@ const Navbar: NextPage = () => {
                           variant="body1"
                           sx={{
                             mr: index !== rightNavLinks.length - 1 ? 2 : "auto",
+                            color: (theme) => theme.palette.common.white,
                           }}
                         >
                           {navLink.label}
@@ -163,7 +167,12 @@ const Navbar: NextPage = () => {
         <Drawer anchor="right" open={drawer} onClose={() => setDrawer(false)}>
           <List>
             {leftNavLinks.map((navLink: INavLink) => (
-              <Link key={navLink.href} href={navLink.href} passHref={true}>
+              <Link
+                style={{ textDecoration: "none" }}
+                key={navLink.href}
+                href={navLink.href}
+                passHref={true}
+              >
                 <ListItem button>
                   <ListItemIcon
                     sx={{ color: (theme) => theme.palette.common.black }}
@@ -179,7 +188,12 @@ const Navbar: NextPage = () => {
             ))}
             <Divider />
             {rightNavLinks.map((navLink: INavLink) => (
-              <Link key={navLink.href} href={navLink.href} passHref={true}>
+              <Link
+                style={{ textDecoration: "none" }}
+                key={navLink.href}
+                href={navLink.href}
+                passHref={true}
+              >
                 <ListItem button>
                   <ListItemIcon
                     sx={{ color: (theme) => theme.palette.common.black }}
