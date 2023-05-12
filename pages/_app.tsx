@@ -28,9 +28,9 @@ let theme = createTheme({
       dark: "#121923",
     },
     secondary: {
-      main: "#366EE9",
-      light: "#368AE9",
-      dark: "#3658E9",
+      main: "#729b79",
+      light: "#bacdb0",
+      dark: "#475b63",
     },
   },
 });
