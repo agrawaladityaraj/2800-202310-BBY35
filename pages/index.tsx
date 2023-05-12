@@ -1,20 +1,42 @@
-import { Button, Grid, Stack } from "@mui/material";
+import Link from "next/link";
+import { Typography, Button, Box, Stack } from "@mui/material";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
+
+  const { data: session, status } = useSession();
+  if (session) {
+    router.push("/homepage");
+  }
+  // if (status === 'authenticated') {
+  //   router.push('/home');
+  // }
   return (
-    <Grid
-      container
-      height="100vh"
+    <Box
+      display="flex"
+      flexDirection="column"
       alignItems="center"
       justifyContent="center"
-      direction="column"
+      minHeight="80vh"
+      p={2}
     >
-      <h1>Using Material UI with Next.js 13</h1>
-      <Stack direction="row" columnGap={1}>
-        <Button variant="contained">Text</Button>
-        <Button variant="contained">Contained</Button>
-        <Button variant="contained">Outlined</Button>
+      <Typography variant="h1" component="h1" align="center" gutterBottom>
+        Welcome to IntelliPaws
+      </Typography>
+      <Stack direction="row" spacing={2} mt={2}>
+        <Link href="/signup" passHref>
+          <Button variant="contained" color="secondary" size="large">
+            Signup
+          </Button>
+        </Link>
+        <Link href="/login" passHref>
+          <Button variant="contained" color="secondary" size="large">
+            Login
+          </Button>
+        </Link>
       </Stack>
-    </Grid>
+    </Box>
   );
 }

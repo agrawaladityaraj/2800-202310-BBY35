@@ -34,7 +34,7 @@ interface INavLink {
 }
 
 const leftNavLinks: INavLink[] = [
-  { href: "/about", label: "About", icon: <InfoIcon /> },
+  { href: "/about", label: "IntelliPaws", icon: <InfoIcon /> },
 ];
 
 const rightNavLinks: INavLink[] = [

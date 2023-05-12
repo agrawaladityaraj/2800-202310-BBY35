@@ -30,7 +30,7 @@ async function createDogBreed(breed) {
 // Function to import the CSV file and create a new dog breed for each row
 async function importCSV() {
   // Create a read stream from the CSV file
-  const fileStream = fs.createReadStream("dog_breeds.csv");
+  const fileStream = fs.createReadStream("dataset/dog_breeds.csv");
   // Use the csv-parser package to parse the CSV file
   fileStream
     .pipe(csvParser())

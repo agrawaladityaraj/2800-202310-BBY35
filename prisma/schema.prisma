@@ -94,9 +94,9 @@ model DogBreed {
   breed                String
   countryOfOrigin      String
   furColor             String
-  heightIn             Float
+  heightIn             String
   colorOfEyes          String
-  longevityYrs         Float
+  longevityYrs         String
   characterTraits      String
   commonHealthProblems String
 }
