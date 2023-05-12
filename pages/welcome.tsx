@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Typography, Button, Box, Stack } from "@mui/material";
-import { useSession } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 
 export default function Welcome() {
@@ -27,16 +27,19 @@ export default function Welcome() {
         Welcome to IntelliPaws
       </Typography>
       <Stack direction="row" spacing={2} mt={2}>
-        <Link href="/" passHref>
+        {/* <Link href="/" passHref>
           <Button variant="contained" color="secondary" size="large">
             Signup
           </Button>
-        </Link>
-        <Link href="/" passHref>
-          <Button variant="contained" color="secondary" size="large">
-            Login
-          </Button>
-        </Link>
+        </Link> */}
+        <Button
+          onClick={() => signIn()}
+          variant="contained"
+          color="secondary"
+          size="large"
+        >
+          Sign In
+        </Button>
       </Stack>
     </Box>
   );
