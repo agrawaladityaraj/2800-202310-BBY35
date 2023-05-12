@@ -25,7 +25,7 @@ const Footer = () => {
       >
         <Grid item>
           <Stack spacing={2}>
-            <Link href="/" passHref={true}>
+            <Link style={{ textDecoration: "none" }} href="/" passHref={true}>
               <Typography
                 sx={{
                   color: (theme) => theme.palette.common.black,
@@ -47,7 +47,11 @@ const Footer = () => {
         </Grid>
         <Grid item>
           <Stack spacing={2}>
-            <Link href="/about" passHref={true}>
+            <Link
+              style={{ textDecoration: "none" }}
+              href="/about"
+              passHref={true}
+            >
               <Typography
                 sx={{
                   color: (theme) => theme.palette.common.black,
@@ -61,7 +65,11 @@ const Footer = () => {
         </Grid>
         <Grid item>
           <Stack spacing={2}>
-            <Link href="/contact" passHref={true}>
+            <Link
+              style={{ textDecoration: "none" }}
+              href="/contact"
+              passHref={true}
+            >
               <Typography
                 sx={{
                   color: (theme) => theme.palette.common.black,
