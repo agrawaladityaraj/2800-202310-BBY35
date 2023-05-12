@@ -14,7 +14,7 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.3",
     "@mui/x-data-grid": "^6.3.1",
-    "@next-auth/prisma-adapter": "^0.4.4-canary.81",
+    "@next-auth/prisma-adapter": "^1.0.6",
     "@prisma/client": "^4.14.0",
     "@types/next-auth": "^3.15.0",
     "@types/node": "18.16.3",
