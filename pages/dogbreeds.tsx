@@ -9,7 +9,7 @@ export default function DogBreeds() {
   }, []);
 
   const fetchDogBreeds = async () => {
-    const response = await fetch("/api/dogbreeds");
+    const response = await fetch("/api/dog-breeds");
     const data = await response.json();
     setDogBreeds(data);
   };
@@ -32,12 +32,7 @@ export default function DogBreeds() {
 
   return (
     <div style={{ height: 400, width: "100%" }}>
-      <DataGrid
-        rows={dogBreeds}
-        columns={columns}
-        pageSize={5}
-        checkboxSelection
-      />
+      <DataGrid rows={dogBreeds} columns={columns} checkboxSelection />
     </div>
   );
 }
