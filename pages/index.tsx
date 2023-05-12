@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Typography, Button, Box, Stack } from "@mui/material";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 
 export default function Home() {
   const router = useRouter();
@@ -31,11 +32,14 @@ export default function Home() {
             Signup
           </Button>
         </Link>
-        <Link href="/login" passHref>
-          <Button variant="contained" color="secondary" size="large">
-            Login
-          </Button>
-        </Link>
+        <Button
+          onClick={() => signIn()}
+          variant="contained"
+          color="secondary"
+          size="large"
+        >
+          Login
+        </Button>
       </Stack>
     </Box>
   );
