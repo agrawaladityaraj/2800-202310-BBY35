@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
-export default async function handler(req, res) {
+export default async function handler(_: NextFetchRequestConfig, res: any) {
   const prisma = new PrismaClient();
   try {
     const dogBreeds = await prisma.dogBreed.findMany();
