@@ -7,13 +7,14 @@ import { signIn } from "next-auth/react";
 export default function Home() {
   const router = useRouter();
 
-  const { data: session, status } = useSession();
-  if (session) {
+  const { status } = useSession();
+  if (status === "authenticated") {
     router.push("/homepage");
   }
-  // if (status === 'authenticated') {
-  //   router.push('/home');
-  // }
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Box
       display="flex"
