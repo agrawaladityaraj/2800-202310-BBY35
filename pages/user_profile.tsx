@@ -1,29 +1,11 @@
-import React, { useState, useEffect } from "react";
 import { Typography, Grid, Button, Avatar } from "@mui/material";
 import { Box } from "@mui/system";
 import { useSession, signOut } from "next-auth/react";
 
-// Mock user data. Replace this with real data from your application.
-const mockUser = {
-  id: "user123",
-  name: "John Doe",
-  email: "john.doe@example.com",
-  dogs: ["Golden Retriever", "Labrador Retriever"],
-  profilePic: "https://example.com/john_doe_pic.jpg", // Replace with actual image url
-  bio: "Dog lover. Owner of two wonderful retrievers.",
-};
-
 export default function UserProfile() {
-  const [user, setUser] = useState(mockUser);
   const { data } = useSession();
   console.log(data);
   console.log(data?.user?.name);
-
-  useEffect(() => {
-    // Fetch the user's data when the component mounts.
-    // Replace this with a call to your API or data context.
-    setUser(mockUser);
-  }, []);
 
   return (
     <Grid
@@ -40,7 +22,7 @@ export default function UserProfile() {
           marginBottom="2em"
         >
           <Avatar
-            alt={user.name}
+            alt={data?.user?.name || ""}
             src={data?.user?.image || ""}
             sx={{ width: 80, height: 80 }}
           />
