@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {
-  Typography,
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
-  Avatar,
-} from "@mui/material";
+import { Typography, Grid, Button, Avatar } from "@mui/material";
 import { Box } from "@mui/system";
+import { useSession, signOut } from "next-auth/react";
 
 // Mock user data. Replace this with real data from your application.
 const mockUser = {
@@ -21,6 +15,9 @@ const mockUser = {
 
 export default function UserProfile() {
   const [user, setUser] = useState(mockUser);
+  const { data } = useSession();
+  console.log(data);
+  console.log(data?.user?.name);
 
   useEffect(() => {
     // Fetch the user's data when the component mounts.
@@ -32,7 +29,7 @@ export default function UserProfile() {
     <Grid
       container
       justifyContent="center"
-    //   marginTop="60px"
+      //   marginTop="60px"
       style={{ minHeight: "100vh", backgroundColor: "#ffffff", padding: "2em" }}
     >
       <Grid item xs={12} sm={8} md={6} lg={4}>
@@ -44,35 +41,17 @@ export default function UserProfile() {
         >
           <Avatar
             alt={user.name}
-            src={user.profilePic}
+            src={data?.user?.image || ""}
             sx={{ width: 80, height: 80 }}
           />
           <Typography
             variant="h4"
             component="h1"
-            style={{ fontWeight: "bold", marginTop: "1em", color: "#3f51b5" }}
+            style={{ fontWeight: "bold", marginTop: "1em" }}
           >
-            {user.name}
-          </Typography>
-          <Typography
-            variant="body1"
-            color="textSecondary"
-            style={{ textAlign: "center" }}
-          >
-            {user.bio}
+            {data?.user?.name}
           </Typography>
         </Box>
-
-        <Typography
-          variant="subtitle1"
-          style={{ fontWeight: "bold", marginBottom: "0.5em" }}
-        >
-          ID
-        </Typography>
-        <Typography variant="body1" style={{ marginBottom: "1em" }}>
-          {user.id}
-        </Typography>
-
         <Typography
           variant="subtitle1"
           style={{ fontWeight: "bold", marginBottom: "0.5em" }}
@@ -80,22 +59,17 @@ export default function UserProfile() {
           Email
         </Typography>
         <Typography variant="body1" style={{ marginBottom: "1em" }}>
-          {user.email}
+          {data?.user?.email}
         </Typography>
-
-        <Typography
-          variant="subtitle1"
-          style={{ fontWeight: "bold", marginBottom: "0.5em" }}
+        <Button
+          variant="contained"
+          fullWidth
+          color="secondary"
+          size="small"
+          onClick={() => signOut()}
         >
-          Dogs
-        </Typography>
-        <List>
-          {user.dogs.map((dog, index) => (
-            <ListItem key={index}>
-              <ListItemText primary={dog} />
-            </ListItem>
-          ))}
-        </List>
+          Log Out
+        </Button>
       </Grid>
     </Grid>
   );
