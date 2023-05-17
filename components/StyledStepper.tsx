@@ -7,12 +7,7 @@ import {
 
 const useStyles = createStyles((theme, _) => ({
   root: {
-    // padding: theme.spacing.md,
     padding: "2em",
-    // backgroundColor:
-    //   theme.colorScheme === "dark"
-    //     ? theme.colors.dark[6]
-    //     : theme.colors.gray[0],
   },
 
   separator: {
@@ -34,25 +29,10 @@ const useStyles = createStyles((theme, _) => ({
   },
 
   stepIcon: {
-    ref: getRef("stepIcon"),
-    borderColor: "transparent",
     backgroundColor:
       theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.white,
-    borderWidth: 0,
-  },
 
-  step: {
-    transition: "transform 150ms ease",
-  },
-
-  stepProgress: {
-    transform: "scale(1.05)",
-
-    [`& .${getRef("stepIcon")}`]: {},
-  },
-
-  stepCompleted: {
-    [`& .${getRef("stepIcon")}`]: {
+    "&[data-completed]": {
       borderWidth: 0,
       backgroundColor: "transparent",
       backgroundImage: theme.fn.linearGradient(
@@ -61,6 +41,10 @@ const useStyles = createStyles((theme, _) => ({
         theme.colors.cyan[6]
       ),
     },
+  },
+
+  step: {
+    transition: "transform 150ms ease",
   },
 
   content: {

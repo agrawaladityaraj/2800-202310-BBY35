@@ -8,6 +8,7 @@ import { CssBaseline, Box } from "@mui/material";
 
 import "@/styles/globals.css";
 import State from "@/Context/State";
+import MountedWrapper from "@/components/MountedWrapper";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Alert from "@/components/Alert";
@@ -45,19 +46,21 @@ export default function MyAppBase({
       <State>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Box
-            sx={{
-              minHeight: "100vh",
-              display: "flex",
-              flexDirection: "column",
-              backgroundColor: (theme) => theme.palette.primary.main,
-            }}
-          >
-            <Navbar />
-            <Component {...pageProps} />
-            <Footer />
-            <Alert />
-          </Box>
+          <MountedWrapper>
+            <Box
+              sx={{
+                minHeight: "100vh",
+                display: "flex",
+                flexDirection: "column",
+                backgroundColor: (theme) => theme.palette.primary.main,
+              }}
+            >
+              <Navbar />
+              <Component {...pageProps} />
+              <Footer />
+              <Alert />
+            </Box>
+          </MountedWrapper>
         </ThemeProvider>
       </State>
     </SessionProvider>
