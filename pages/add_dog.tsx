@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Container } from "@mui/material";
 import { Stepper } from "@mantine/core";
 
@@ -6,6 +7,10 @@ import AuthWrapper from "@/components/AuthWrapper";
 import StyledStepper from "@/components/StyledStepper";
 import JourneyStep from "@/components/JourneyStep";
 import useSmall from "@/Hooks/useSmall";
+
+import fetchDogBreeds from "@/lib/fetchDogBreeds";
+
+import { IDogBreed } from "@/models";
 
 interface IStep {
   label: string;
@@ -68,6 +73,13 @@ export default function AddDog() {
   const small = useSmall(1000);
 
   const [activeStep, setActiveStep] = useState<number>(0);
+  const [dogBreeds, setDogBreeds] = useState<IDogBreed[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      setDogBreeds(await fetchDogBreeds());
+    })();
+  }, []);
 
   return (
     <AuthWrapper>
