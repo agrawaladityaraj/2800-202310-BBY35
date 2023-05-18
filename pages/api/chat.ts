@@ -14,8 +14,7 @@ export default async function handler(
   if (!configuration.apiKey) {
     res.status(500).json({
       error: {
-        message:
-          "OpenAI API key not configured, please follow instructions in README.md",
+        message: "OpenAI API key not configured",
       },
     });
     return;
@@ -25,10 +24,9 @@ export default async function handler(
     const response = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: prompt,
-      max_tokens: 50,
+      max_tokens: 150,
     });
     let generatedText = response.data.choices[0].text.trim();
-    // console.log(generatedText);
     res.status(200).json({ response: generatedText });
   } catch (error: any) {
     if (error.response) {

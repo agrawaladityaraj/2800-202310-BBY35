@@ -19,8 +19,9 @@ const ChatComponent: React.FC = () => {
     I am a dog expert. 
     If you ask me anything related about dogs, 
     I will answer you. 
-    If you ask me anything unrelated, 
-    or has no clear answer I will respond with "Woof".`;
+    If you ask me anything unrelated about dogs, 
+    or has no clear answer I will respond with "Woof Woof".
+    I will limit my answer to a maximum of 150 tokens.`;
 
     const fullPrompt = `${defaultPrompt}\n\n ${message}`;
 
