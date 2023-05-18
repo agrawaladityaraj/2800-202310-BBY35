@@ -62,13 +62,15 @@ model VerificationToken {
 
 model Dog {
   id               String             @id @default(cuid())
+  stage            Int
   name             String
-  breed            String
+  breedId          String
   birthDate        DateTime?
   ownerId          String
   createdAt        DateTime           @default(now())
   updatedAt        DateTime           @updatedAt
   owner            User               @relation(fields: [ownerId], references: [id])
+  breed            DogBreed           @relation(fields: [breedId], references: [id])
   vaccines         Vaccine[]
   trainingVideos   DogTrainingVideo[]
   medicalDocuments MedicalDocument[]
@@ -142,4 +144,5 @@ model DogBreed {
   longevityYrs         String
   characterTraits      String
   commonHealthProblems String
+  Dog                  Dog[]
 }
