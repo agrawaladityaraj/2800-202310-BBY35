@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 
 export default function MyForm() {
-  const [dog, setDog] = useState({
+  const [lessonInfo, setLessonInfo] = useState({
     focus: "",
     breed: "",
     age: "",
@@ -24,8 +24,8 @@ export default function MyForm() {
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
-    setDog((prevDog) => ({
-      ...prevDog,
+    setLessonInfo((prevLessonInfo) => ({
+      ...prevLessonInfo,
       [name]: value,
     }));
   };
@@ -33,12 +33,12 @@ export default function MyForm() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/generate", {
+      const response = await fetch("/api/generateLesson", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ dog }),
+        body: JSON.stringify({ lessonInfo }),
       });
       const data = await response.json();
       if (response.status !== 200) {
@@ -47,7 +47,6 @@ export default function MyForm() {
           new Error(`Request failed with status ${response.status}`)
         );
       }
-      console.log(data);
       setResult(data);
     } catch (error) {
       console.error(error);
@@ -61,7 +60,7 @@ export default function MyForm() {
           <InputLabel>Area of Focus</InputLabel>
           <Select
             name="focus"
-            value={dog.focus}
+            value={lessonInfo.focus}
             onChange={handleChange}
             required
           >
@@ -74,7 +73,7 @@ export default function MyForm() {
         <TextField
           name="breed"
           label="Dog Breed"
-          value={dog.breed}
+          value={lessonInfo.breed}
           onChange={handleChange}
           fullWidth
           required
@@ -83,7 +82,7 @@ export default function MyForm() {
         <TextField
           name="age"
           label="Dog Age"
-          value={dog.age}
+          value={lessonInfo.age}
           onChange={handleChange}
           fullWidth
           required
@@ -92,7 +91,7 @@ export default function MyForm() {
         <TextField
           name="energy"
           label="Energy Level"
-          value={dog.energy}
+          value={lessonInfo.energy}
           onChange={handleChange}
           fullWidth
           required
@@ -101,7 +100,7 @@ export default function MyForm() {
         <TextField
           name="behaviour"
           label="Behaviour"
-          value={dog.behaviour}
+          value={lessonInfo.behaviour}
           onChange={handleChange}
           fullWidth
           required
@@ -110,7 +109,7 @@ export default function MyForm() {
         <TextField
           name="reward"
           label="Rewards/Motivators"
-          value={dog.reward}
+          value={lessonInfo.reward}
           onChange={handleChange}
           fullWidth
           required
@@ -120,8 +119,18 @@ export default function MyForm() {
           Submit
         </Button>
       </form>
-      {result && <Typography>{result.result}</Typography>}
-      {console.log(result)}
+      {result && (
+        <Card variant="outlined" style={{ marginTop: "20px" }}>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>
+              Server Response
+            </Typography>
+            <pre style={{ fontSize: "1rem", color: "green" }}>
+              {JSON.stringify(result, null, 2)}
+            </pre>
+          </CardContent>
+        </Card>
+      )}
     </>
   );
 }
