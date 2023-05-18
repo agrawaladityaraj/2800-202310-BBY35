@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import DogGif from "@/assets/images/dog.gif";
-import styles from "/styles/Homepage.module.css"; // Make sure to put the correct path to your CSS file here
+import styles from "/styles/Homepage.module.css";
 
 const buttons = [
   <Button component={Link} href="/training" key="one">
