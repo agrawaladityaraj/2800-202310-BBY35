@@ -27,7 +27,9 @@ export default function DogBreedSelector({
 
   return (
     <Stack sx={{ p: "2em" }} spacing={2}>
-      <Title order={2}>{question}</Title>
+      <Title sx={{ fontFamily: "Inter, sans-serif" }} order={3}>
+        {question}
+      </Title>
       <Select
         placeholder="Search"
         data={dogBreeds.map((breed: IDogBreed) => ({

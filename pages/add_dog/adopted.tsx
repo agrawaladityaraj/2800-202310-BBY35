@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Stack, Fade, Box } from "@mui/material";
+import { Stack, Fade } from "@mui/material";
 import { TypeAnimation } from "react-type-animation";
 
 import AuthWrapper from "@/components/AuthWrapper";
@@ -23,7 +23,7 @@ export default function Adopted() {
         <TypeAnimation
           wrapper="div"
           style={{ fontSize: "2rem", fontWeight: 600 }}
-          sequence={["Curiosity Stage", 1000, () => setTitleRendered(true)]}
+          sequence={["Newly Owned Stage", 1000, () => setTitleRendered(true)]}
           cursor={false}
         />
         {titleRendered && (
@@ -35,7 +35,7 @@ export default function Adopted() {
               1000,
               () => setMessageRendered(true),
             ]}
-            cursor={false}
+            speed={70}
           />
         )}
         {messageRendered && (
