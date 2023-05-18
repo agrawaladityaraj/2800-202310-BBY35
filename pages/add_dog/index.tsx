@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Stack } from "@mui/material";
+import { Stack, Slide } from "@mui/material";
 import { Stepper, Title } from "@mantine/core";
 
 import AuthWrapper from "@/components/AuthWrapper";

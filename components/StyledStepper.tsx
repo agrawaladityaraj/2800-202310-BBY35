@@ -45,6 +45,11 @@ const useStyles = createStyles((theme, _) => ({
 
   step: {
     transition: "transform 150ms ease",
+
+    "&[data-progress]": {
+      transform: "scale(1.25)",
+      paddingLeft: "0.8em",
+    },
   },
 
   content: {
