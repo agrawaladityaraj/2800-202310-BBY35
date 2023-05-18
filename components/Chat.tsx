@@ -22,7 +22,7 @@ const ChatComponent: React.FC = () => {
     If you ask me anything unrelated, 
     or has no clear answer I will respond with "Woof".`;
 
-    const fullPrompt = `${defaultPrompt}\n\nQ: ${message}`;
+    const fullPrompt = `${defaultPrompt}\n\n ${message}`;
 
     const res = await fetch("/api/chat", {
       method: "POST",
