@@ -20,7 +20,7 @@ const buttons2 = [
   <Button key="two">Contact</Button>,
 ];
 
-export default function homeButtons() {
+export default function HomeButtons() {
   const [clickCount, setclickCount] = useState(0);
   const [showDog, setShowDog] = useState(false);
 
