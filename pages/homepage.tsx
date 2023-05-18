@@ -1,15 +1,16 @@
 import { Typography, Button, ButtonGroup, Box, Stack } from "@mui/material";
 import Logo from "@/assets/images/Logo.png";
 import Image from "next/image";
-import Link from 'next/link';
-
-
+import Link from "next/link";
+import Chat from "@/components/Chat";
 
 const buttons = [
-    <Button component={Link} href="/training" key="one">Basic Puppy Training</Button>,
-    <Button key="two">Recommend a Dog</Button>,
-    <Button key="three">Browse Dog Breeds</Button>,
-    <Button key="four">New Dog</Button>
+  <Button component={Link} href="/training" key="one">
+    Basic Puppy Training
+  </Button>,
+  <Button key="two">Recommend a Dog</Button>,
+  <Button key="three">Browse Dog Breeds</Button>,
+  <Button key="four">New Dog</Button>,
 ];
 
 const buttons2 = [
@@ -40,31 +41,33 @@ export default function homeButtons() {
         <Image src={Logo} height={100} width={100} alt="Logo" />
       </Box>
 
-            <ButtonGroup
-                orientation="vertical"
-                aria-label="vertical outlined button group"
-                color="secondary"
-                variant ="contained"
-            >
-                {buttons}
-            </ButtonGroup>
+      <ButtonGroup
+        orientation="vertical"
+        aria-label="vertical outlined button group"
+        color="secondary"
+        variant="contained"
+      >
+        {buttons}
+      </ButtonGroup>
 
-            <Box display="flex" alignItems="center" justifyContent="center">
-                <Typography variant="h5" component="h5" style={{ fontWeight: 'bold', marginRight: '1em' }}>
-                    Information
-                </Typography>
-            </Box>
-            <ButtonGroup
-                orientation="vertical"
-                aria-label="vertical outlined button group"
-                color="secondary"
-                variant ="contained"
-            >
-                {buttons2}
-            </ButtonGroup>
-        </Box>
-
-
-    );
+      <Box display="flex" alignItems="center" justifyContent="center">
+        <Typography
+          variant="h5"
+          component="h5"
+          style={{ fontWeight: "bold", marginRight: "1em" }}
+        >
+          Information
+        </Typography>
+      </Box>
+      <ButtonGroup
+        orientation="vertical"
+        aria-label="vertical outlined button group"
+        color="secondary"
+        variant="contained"
+      >
+        {buttons2}
+      </ButtonGroup>
+      <Chat />
+    </Box>
+  );
 }
-
