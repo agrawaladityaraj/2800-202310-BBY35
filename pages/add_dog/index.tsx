@@ -1,16 +1,11 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Container } from "@mui/material";
-import { Stepper } from "@mantine/core";
+import React, { useState } from "react";
+import { Stack } from "@mui/material";
+import { Stepper, Title } from "@mantine/core";
 
 import AuthWrapper from "@/components/AuthWrapper";
 import StyledStepper from "@/components/StyledStepper";
 import JourneyStep from "@/components/JourneyStep";
 import useSmall from "@/Hooks/useSmall";
-
-import fetchDogBreeds from "@/lib/fetchDogBreeds";
-
-import { IDogBreed } from "@/models";
 
 interface IStep {
   label: string;
@@ -26,7 +21,7 @@ const steps: IStep[] = [
       <JourneyStep
         title="Curiosity Stage"
         content="Hey there future pup parent! 🐾 Feeling the puppy love but not sure where to start? Don't worry, we've got you! Let's embark on a tail-wagging adventure to discover your dream dog breed. By understanding your lifestyle, preferences, and quirks, we'll make sure to find a furry match that's paw-sitively perfect! 🐶"
-        link="/curious"
+        link="/add_dog/curious"
         button="Sniff Out My Perfect Pup!"
       />
     ),
@@ -38,7 +33,7 @@ const steps: IStep[] = [
       <JourneyStep
         title="Newly Owned Stage"
         content="Hip hip hooray! 🎉 You've got a new paw-tner in crime. Welcome to the wildly wonderful world of dog ownership! Get ready for belly rubs, endless games of fetch, and yes, even those infamous puppy dog eyes. We're here to help you navigate these exciting times. From understanding your pup's unique needs to setting up a cozy corner, we'll make sure you're fully pre-pawed! 🦴"
-        link="/adopted"
+        link="/add_dog/adopted"
         button="Start Pup Parenting!"
       />
     ),
@@ -50,7 +45,7 @@ const steps: IStep[] = [
       <JourneyStep
         title="Training Stage"
         content="Ready to teach your dog some pawsome tricks? 🎓 Unleash your inner dog whisperer as we guide you through the exciting journey of dog training. Remember, every 'sit', 'stay', and 'paw' is a paw-sitive step towards a well-behaved furry friend. Let's roll over to our training resources and get your pup's tail wagging with excitement! 🐕‍🦺"
-        link="/training"
+        link="/add_dog/training"
         button="Turn Barks into Tricks!"
       />
     ),
@@ -62,7 +57,7 @@ const steps: IStep[] = [
       <JourneyStep
         title="Health Maintenance Stage"
         content="Want to keep your dog's tail wagging with health and happiness? 🌈 You've come to the right place! Let's deep-dive into the world of doggy diets, exercise routines, and preventive care. Because when it comes to your dog's health, every little bit counts. Let's fetch some great tips together to keep your pup feeling pawsitively vibrant! 🍎"
-        link="/health"
+        link="/add_dog/health"
         button="Let's Keep the Tail Wagging!"
       />
     ),
@@ -73,17 +68,13 @@ export default function AddDog() {
   const small = useSmall(1000);
 
   const [activeStep, setActiveStep] = useState<number>(0);
-  const [dogBreeds, setDogBreeds] = useState<IDogBreed[]>([]);
-
-  useEffect(() => {
-    (async () => {
-      setDogBreeds(await fetchDogBreeds());
-    })();
-  }, []);
 
   return (
     <AuthWrapper>
-      <Container sx={{ p: small ? 0 : "2em" }}>
+      <Stack sx={{ p: small ? 0 : "2em" }} spacing={small ? 1 : 2}>
+        <Title sx={{ paddingLeft: "1em" }} order={small ? 3 : 1}>
+          What stage are you on?
+        </Title>
         <StyledStepper
           active={activeStep}
           onStepClick={(index: number) => setActiveStep(index)}
@@ -100,7 +91,7 @@ export default function AddDog() {
             </Stepper.Step>
           ))}
         </StyledStepper>
-      </Container>
+      </Stack>
     </AuthWrapper>
   );
 }

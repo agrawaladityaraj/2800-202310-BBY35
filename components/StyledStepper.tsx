@@ -48,7 +48,7 @@ const useStyles = createStyles((theme, _) => ({
   },
 
   content: {
-    paddingTop: "3em",
+    paddingTop: "3vw",
   },
 }));
 
