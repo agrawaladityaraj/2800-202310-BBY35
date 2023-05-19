@@ -35,7 +35,7 @@ export default function MyForm() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/generateLesson", {
+      const response = await fetch("/api/openai/generateLesson", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -114,7 +114,7 @@ export default function MyForm() {
         />
 
         <TextField
-          name="reward"
+          name="motavation"
           label="Rewards/Motivators"
           value={lessonInfo.motavation}
           onChange={handleChange}
@@ -131,7 +131,7 @@ export default function MyForm() {
             multiple
             required
           >
-            <MenuItem value="Exercise1">Exercise1</MenuItem>
+            <MenuItem value="sit and stay">stay sit</MenuItem>
             <MenuItem value="Exercise2">Exercise2</MenuItem>
             <MenuItem value="Exercise3">Exercise3</MenuItem>
           </Select>

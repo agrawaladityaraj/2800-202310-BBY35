@@ -9,7 +9,7 @@ import type {
 const shape = `
 {
   "lessonFocus": "<lesson focus>",
-  "lessonGoal": "<lesson goal>",
+  "lessonGoals": "<lesson goal>",
   "lessonObjectives": [
       "<lesson objective1>",
       "<lesson objective2>",
@@ -52,6 +52,7 @@ export const generatePrompt = (lessonInfo: ILessonRequest): IChatGPTMessage => {
     Area of focus for this lesson: ${lessonInfo.focus}.
 
     Avoid exercises: ${lessonInfo.avoidExercises}.
+    Do not mention these exercises anywhere in the lesson plan.
     
     The lesson will include 3 exercises:
     Each exercise will have:

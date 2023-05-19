@@ -8,12 +8,9 @@ import styles from "/styles/Homepage.module.css"; // Make sure to put the correc
 import Dog from "@/assets/images/dog3.gif";
 
 const buttons = [
-  <Button component={Link} href="/training" key="one">
-    Basic Puppy Training
-  </Button>,
-  <Button key="two">Recommend a Dog</Button>,
-  <Button key="three">Browse Dog Breeds</Button>,
-  <Button key="four">New Dog</Button>,
+  <Button key="one">Recommend a Dog</Button>,
+  <Button key="two">Browse Dog Breeds</Button>,
+  <Button key="three">New Dog</Button>,
 ];
 
 const buttons2 = [
