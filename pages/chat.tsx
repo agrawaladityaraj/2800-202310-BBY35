@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { Typography } from "@mui/material";
 import { GetServerSideProps } from "next";
 
+// This is the initial conversation that the chatbot will have with the user, we load it on the server side
 export const getServerSideProps: GetServerSideProps = async () => {
   const setupPrompt = [
     {
@@ -24,21 +25,24 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
+// This is the interface for the conversation, each message has a role and content
 interface Conversation {
   role: string;
   content: string;
 }
 
+// This is the interface for the props of the chat component
 interface ChatProps {
   initialConversation: Conversation[];
 }
 
 export default function ChatComponent({ initialConversation }: ChatProps) {
+  // states for the value of the input and the conversation
   const [value, setValue] = useState<string>("");
   const [conversation, setConversation] =
     useState<Conversation[]>(initialConversation);
   const inputRef = useRef<HTMLInputElement>(null);
-
+  // This is the function that sends the message to the chatbot
   const sendMessage = async () => {
     const chatHistory = [...conversation, { role: "user", content: value }];
     const response = await fetch("/api/chatBot", {
@@ -48,7 +52,7 @@ export default function ChatComponent({ initialConversation }: ChatProps) {
       },
       body: JSON.stringify({ messages: chatHistory }),
     });
-
+    // This is the response from the chatbot, also updates the conversation
     const data = await response.json();
     setValue("");
     setConversation([
@@ -56,13 +60,14 @@ export default function ChatComponent({ initialConversation }: ChatProps) {
       { role: "assistant", content: data.result.choices[0].message.content },
     ]);
   };
-
+  // This is the function that handles the enter key, which will call the sendMessage function
   const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       await sendMessage();
     }
   };
 
+  // This is the function that handles the clear button, which will clear the input and conversation
   const handleClear = () => {
     inputRef.current?.focus();
     setValue("");
