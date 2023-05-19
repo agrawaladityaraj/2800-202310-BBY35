@@ -18,6 +18,7 @@ interface Dog {
   breedId: string;
   pictureUrl: string;
   breed: DogBreed;
+  // Add more properties as needed
 }
 
 function DogProfile() {

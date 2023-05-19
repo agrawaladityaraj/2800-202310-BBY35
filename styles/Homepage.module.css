@@ -1,3 +1,17 @@
+@keyframes float {
+    0% {
+        transform: translate(0, 0)
+    }
+
+    50% {
+        transform: translate(300px, 10px)
+    }
+
+    100% {
+        transform: translate(0, 0)
+    }
+}
+
 .dog-animation {
     position: fixed;
     top: 0;
@@ -5,4 +19,11 @@
     width: 100vw;
     height: 100vh;
     z-index: 9999;
+}
+
+.animated-gif {
+    position: absolute;
+    left: 0;
+    /* top: 0; */
+    animation: float 5s ease-in-out infinite;
 }
