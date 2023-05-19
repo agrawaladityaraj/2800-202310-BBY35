@@ -6,10 +6,6 @@ import {
 } from "@mantine/core";
 
 const useStyles = createStyles((theme, _) => ({
-  root: {
-    padding: "2em",
-  },
-
   separator: {
     height: 2,
     borderTop: `2px dashed ${
