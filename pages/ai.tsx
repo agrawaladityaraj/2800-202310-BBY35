@@ -114,7 +114,7 @@ export default function MyForm() {
         />
 
         <TextField
-          name="reward"
+          name="motavation"
           label="Rewards/Motivators"
           value={lessonInfo.motavation}
           onChange={handleChange}
