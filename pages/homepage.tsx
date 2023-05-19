@@ -7,12 +7,9 @@ import DogGif from "@/assets/images/dog.gif";
 import styles from "/styles/Homepage.module.css";
 
 const buttons = [
-  <Button component={Link} href="/training" key="one">
-    Basic Puppy Training
-  </Button>,
-  <Button key="two">Recommend a Dog</Button>,
-  <Button key="three">Browse Dog Breeds</Button>,
-  <Button key="four">New Dog</Button>,
+  <Button key="one">Recommend a Dog</Button>,
+  <Button key="two">Browse Dog Breeds</Button>,
+  <Button key="three">New Dog</Button>,
 ];
 
 const buttons2 = [

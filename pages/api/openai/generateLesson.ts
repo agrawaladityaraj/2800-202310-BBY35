@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 // import methods that will create the correct prompt and parse the response from api
-import { generatePrompt, parseResponse } from "@/Prompts/lesson";
+import { generatePrompt, parseResponse } from "@/PromptUtils/lessonUtils";
 // import openai from config file which contains the api key and configs the api object
 import openai from "@/Utils/openaiConfig";
 
