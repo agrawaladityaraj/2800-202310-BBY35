@@ -4,7 +4,7 @@ import Context from "@/Context/Context";
 import Reducer from "@/Context/Reducer";
 
 import Contstants from "../Constants";
-import { IState, IAlert } from "../models";
+import { IState, IAlert, IUser } from "../models";
 
 const State = (props: any) => {
   const initialState: IState = Contstants.InitialState;
@@ -15,11 +15,15 @@ const State = (props: any) => {
     dispatch({ type: "setAlert", payload: payload });
   };
 
+  const setUser = (payload: IUser) => {
+    dispatch({ type: "setUser", payload: payload });
+  };
   return (
     <Context.Provider
       value={{
         ...state,
         setAlert,
+        setUser,
       }}
     >
       {props.children}

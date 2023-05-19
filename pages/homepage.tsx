@@ -2,6 +2,9 @@ import { Typography, Button, ButtonGroup, Box, Stack } from "@mui/material";
 import Logo from "@/assets/images/Logo.png";
 import Image from "next/image";
 import Link from "next/link";
+import React, { useState } from "react";
+import DogGif from "@/assets/images/dog.gif";
+import styles from "/styles/Homepage.module.css";
 
 const buttons = [
   <Button component={Link} href="/training" key="one">
@@ -17,7 +20,26 @@ const buttons2 = [
   <Button key="two">Contact</Button>,
 ];
 
-export default function homeButtons() {
+export default function HomeButtons() {
+  const [clickCount, setclickCount] = useState(0);
+  const [showDog, setShowDog] = useState(false);
+
+  const handleLogoClick = () => {
+    if (clickCount >= 3) {
+      //resetting the click count and show the dog animation
+      setclickCount(0);
+      setShowDog(true);
+
+      //hide the dog animation after 5 seconds
+      setTimeout(() => {
+        setShowDog(false);
+      }, 810);
+    } else {
+      //incrementing the click count
+      setclickCount(clickCount + 1);
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -37,7 +59,24 @@ export default function homeButtons() {
         >
           IntelliPaws
         </Typography>
-        <Image src={Logo} height={100} width={100} alt="Logo" />
+        <Image
+          src={Logo}
+          height={100}
+          width={100}
+          alt="Logo"
+          onClick={handleLogoClick}
+        />
+        {showDog && (
+          <div className={styles["dog-animation"]}>
+            <Image
+              src={DogGif}
+              priority={true}
+              fill
+              style={{ objectFit: "cover" }}
+              alt="Dog Licking Screen"
+            />
+          </div>
+        )}
       </Box>
 
       <ButtonGroup
