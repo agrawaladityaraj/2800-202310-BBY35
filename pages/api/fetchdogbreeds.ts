@@ -1,7 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/lib/prisma";
 
 export default async function handler(_: NextFetchRequestConfig, res: any) {
-  const prisma = new PrismaClient();
   try {
     const dogBreeds = await prisma.dogBreed.findMany();
     res.status(200).json(dogBreeds);
