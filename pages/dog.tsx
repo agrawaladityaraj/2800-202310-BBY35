@@ -1,42 +1,43 @@
-import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useEffect, useState, useContext } from "react";
 
-// Assume we have a function to fetch dogs data from a database
-// import { getDogsForUser } from '../lib/api';
+import Context from "@/Context/Context";
+import AuthWrapper from "@/components/AuthWrapper";
 
-function Dog() {
-  const [dogs, setDogs] = useState<{ id: string; name: string }[]>([]);
+import { IContext } from "@/models";
+
+interface Dog {
+  id: string;
+  name: string;
+  ownerId: string;
+}
+
+function DogPage() {
+  const { user }: IContext = useContext(Context);
+  const [dogs, setDogs] = useState<Dog[]>([]);
 
   useEffect(() => {
-    async function fetchDogs() {
-      // Assuming the user's ID is 1 for simplicity
-      // const data = await getDogsForUser(1);
-      // For demonstration, we'll use static data
-      const data = [
-        { id: "1", name: "Max" },
-        { id: "2", name: "Bella" },
-        // ... add more dogs
-      ];
-      setDogs(data);
+    if (user.id) {
+      fetch(`/api/dog/${user.id}`)
+        .then((response) => response.json())
+        .then((data) => setDogs(data));
     }
-
-    fetchDogs();
-  }, []);
-
-  if (!dogs.length) {
-    return <div>Loading...</div>;
-  }
+  }, [user]);
 
   return (
-    <div>
-      <h1>My Dogs</h1>
-      {dogs.map((dog) => (
-        <div key={dog.id}>
-          <Link href={`/dog/${dog.id}`}>{dog.name}</Link>
-        </div>
-      ))}
-    </div>
+    <AuthWrapper>
+      <div>
+        <h1>My Dogs</h1>
+        <ul>
+          {dogs.map((dog) => (
+            <li key={dog.id}>
+              <Link href={`/dog/${dog.id}`}>{dog.name}</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </AuthWrapper>
   );
 }
 
-export default Dog;
+export default DogPage;

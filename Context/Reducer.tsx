@@ -8,6 +8,11 @@ const Reducer = (state: IState, action: { type: string; payload: any }) => {
         ...state,
         alert: payload,
       };
+    case "setUser":
+      return {
+        ...state,
+        user: payload,
+      };
     default:
       return state;
   }

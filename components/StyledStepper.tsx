@@ -6,10 +6,6 @@ import {
 } from "@mantine/core";
 
 const useStyles = createStyles((theme, _) => ({
-  root: {
-    padding: "2em",
-  },
-
   separator: {
     height: 2,
     borderTop: `2px dashed ${
@@ -45,10 +41,15 @@ const useStyles = createStyles((theme, _) => ({
 
   step: {
     transition: "transform 150ms ease",
+
+    "&[data-progress]": {
+      transform: "scale(1.25)",
+      paddingLeft: "0.8em",
+    },
   },
 
   content: {
-    paddingTop: "3em",
+    paddingTop: "3vw",
   },
 }));
 
