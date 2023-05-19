@@ -1,9 +1,11 @@
+// import required types for requesting and sending data to the API
 import type {
   ILessonRequest,
   ILessonResponse,
   IChatGPTMessage,
 } from "@/models/index";
 
+// define the shape of the response
 const shape = `
 {
   "lessonFocus": "<lesson focus>",
@@ -34,6 +36,7 @@ const shape = `
 }
 `;
 
+// define the prompt that will be sent to the API
 export const generatePrompt = (lessonInfo: ILessonRequest): IChatGPTMessage => {
   const prompt: IChatGPTMessage = {
     role: "user",
@@ -62,6 +65,7 @@ export const generatePrompt = (lessonInfo: ILessonRequest): IChatGPTMessage => {
   return prompt;
 };
 
+// define the function that will parse the response from the API
 export const parseResponse = (completion: any): ILessonResponse => {
   const data = completion.data.choices[0].message;
   const lessonResponse: ILessonResponse = JSON.parse(data.content);
