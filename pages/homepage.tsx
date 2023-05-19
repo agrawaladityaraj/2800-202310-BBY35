@@ -5,6 +5,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import DogGif from "@/assets/images/dog.gif";
 import styles from "/styles/Homepage.module.css"; // Make sure to put the correct path to your CSS file here
+import Dog from "@/assets/images/dog3.gif";
 
 const buttons = [
   <Button component={Link} href="/training" key="one">
@@ -73,7 +74,7 @@ export default function HomeButtons() {
               priority={true}
               fill
               style={{ objectFit: "cover" }}
-              alt="Dog Licking Screen"
+              alt="Dog Saying Hi"
             />
           </div>
         )}
@@ -105,6 +106,15 @@ export default function HomeButtons() {
       >
         {buttons2}
       </ButtonGroup>
+      <div>
+        <Image
+          src={Dog}
+          alt="Description of GIF"
+          width={100}
+          height={100}
+          className={styles["animated-gif"]}
+        />
+      </div>
     </Box>
   );
 }
