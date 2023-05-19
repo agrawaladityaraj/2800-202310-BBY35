@@ -10,17 +10,19 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
+import { ILessonRequest, ILessonResponse } from "@/models/index";
 
 export default function MyForm() {
-  const [lessonInfo, setLessonInfo] = useState({
+  const [lessonInfo, setLessonInfo] = useState<ILessonRequest>({
     focus: "",
     breed: "",
     age: "",
     energy: "",
     behaviour: "",
-    reward: "",
+    motavation: "",
+    avoidExercises: [],
   });
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<ILessonResponse | null>(null);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -40,17 +42,22 @@ export default function MyForm() {
         },
         body: JSON.stringify({ lessonInfo }),
       });
-      const data = await response.json();
+      const data: ILessonResponse = await response.json();
       if (response.status !== 200) {
-        throw (
-          data.error ||
-          new Error(`Request failed with status ${response.status}`)
-        );
+        throw new Error(`Request failed with status ${response.status}`);
       }
       setResult(data);
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleMultiSelectChange = (e: any) => {
+    const { name, value } = e.target;
+    setLessonInfo((prevLessonInfo) => ({
+      ...prevLessonInfo,
+      [name]: value,
+    }));
   };
 
   return (
@@ -109,11 +116,26 @@ export default function MyForm() {
         <TextField
           name="reward"
           label="Rewards/Motivators"
-          value={lessonInfo.reward}
+          value={lessonInfo.motavation}
           onChange={handleChange}
           fullWidth
           required
         />
+
+        <FormControl fullWidth>
+          <InputLabel>Exercises to Avoid</InputLabel>
+          <Select
+            name="avoidExercises"
+            value={lessonInfo.avoidExercises}
+            onChange={handleMultiSelectChange}
+            multiple
+            required
+          >
+            <MenuItem value="Exercise1">Exercise1</MenuItem>
+            <MenuItem value="Exercise2">Exercise2</MenuItem>
+            <MenuItem value="Exercise3">Exercise3</MenuItem>
+          </Select>
+        </FormControl>
 
         <Button type="submit" variant="contained" color="primary">
           Submit
