@@ -2,7 +2,6 @@ import { Typography, Button, ButtonGroup, Box, Stack } from "@mui/material";
 import Logo from "@/assets/images/Logo.png";
 import Image from "next/image";
 import Link from "next/link";
-import Chat from "@/components/Chat";
 
 const buttons = [
   <Button component={Link} href="/training" key="one">
@@ -67,7 +66,6 @@ export default function homeButtons() {
       >
         {buttons2}
       </ButtonGroup>
-      <Chat />
     </Box>
   );
 }
