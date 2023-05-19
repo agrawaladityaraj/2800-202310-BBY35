@@ -1,42 +1,23 @@
-import NextAuth, { type NextAuthOptions } from "next-auth";
-import Credentials from "next-auth/providers/credentials";
+import { NextApiHandler } from "next";
+import NextAuth from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
+import GitHubProvider from "next-auth/providers/github";
+import prisma from "@/lib/prisma";
 
-const prisma = new PrismaClient();
+const authHandler: NextApiHandler = (req, res) =>
+  NextAuth(req, res, options as any);
+export default authHandler;
 
-export const authOptions: NextAuthOptions = {
-  session: {
-    strategy: "jwt",
-  },
+const options = {
   providers: [
-    Credentials({
-      name: "Sign In",
-      credentials: {
-        email: {
-          label: "Email",
-          type: "email",
-          placeholder: "hello@example.com",
-        },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials, _) {
-        if (!credentials?.email || !credentials?.password) {
-          return null;
-        }
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email },
-        });
-
-        if (!user) {
-          return null;
-        }
-        return user;
-      },
+    GitHubProvider({
+      clientId: process.env.GITHUB_ID || "",
+      clientSecret: process.env.GITHUB_SECRET || "",
     }),
   ],
   adapter: PrismaAdapter(prisma),
+  secret: process.env.SECRET,
 };
 
-const handler = NextAuth(authOptions);
+const handler = NextAuth(options);
 export { handler as GET, handler as POST };
