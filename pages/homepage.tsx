@@ -1,23 +1,15 @@
-import { Typography, Button, ButtonGroup, Box } from "@mui/material";
+import { Typography, Button, Box } from "@mui/material";
+import Link from "next/link";
 import Logo from "@/assets/images/Logo.png";
 import Image from "next/image";
 import React, { useState } from "react";
 import DogGif from "@/assets/images/dog.gif";
 import styles from "/styles/Homepage.module.css";
-import Dog from "@/assets/images/dog3.gif";
-
-const buttons = [
-  <Button key="one">Recommend a Dog</Button>,
-  <Button key="two">Browse Dog Breeds</Button>,
-  <Button key="three">New Dog</Button>,
-];
-
-const buttons2 = [
-  <Button key="one">About Us</Button>,
-  <Button key="two">Contact</Button>,
-];
+import JourneyStepper from "@/components/JourneyStepper";
+import useSmall from "@/Hooks/useSmall";
 
 export default function HomeButtons() {
+  const small = useSmall(1000);
   const [clickCount, setclickCount] = useState(0);
   const [showDog, setShowDog] = useState(false);
 
@@ -36,19 +28,101 @@ export default function HomeButtons() {
       setclickCount(clickCount + 1);
     }
   };
+  const [activeStep, setActiveStep] = useState(0);
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  function getStepsContent(stepIndex: any) {
+    switch (stepIndex) {
+      case 0:
+        return (
+          <>
+            <h3>
+              {
+                "There's a lot to think about before getting a dog! Let me know if you have any questions."
+              }
+            </h3>
+            <Button
+              component={Link}
+              href="/chat"
+              variant="contained"
+              color="primary"
+            >
+              Ask me questions here!
+            </Button>
+          </>
+        );
+      case 1:
+        return (
+          <>
+            <h3>{"Tell me more about which dog you've chosen!"}</h3>
+            <Button
+              component={Link}
+              href="/dog"
+              variant="contained"
+              color="primary"
+            >
+              {"Enter your dog's information here"}
+            </Button>
+          </>
+        );
+      case 2:
+        return (
+          <>
+            <h3>
+              Training your dog is important to keep them and other people safe.
+            </h3>
+            <Button
+              component={Link}
+              href="/lessons"
+              variant="contained"
+              color="primary"
+            >
+              See more training
+            </Button>
+          </>
+        );
+      case 3:
+        return (
+          <>
+            <h3>{"Stay up to date on your dog's health!"}</h3>
+            <Button
+              component={Link}
+              href="/user_profile"
+              variant="contained"
+              color="primary"
+            >
+              {"View your dog's profile"}
+            </Button>
+          </>
+        );
+    }
+  }
+
+  function getSteps() {
+    return [
+      "Thinking about getting a dog",
+      "Choose a dog",
+      "Train your dog",
+      "Care for your dog",
+    ];
+  }
+  const steps = getSteps();
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        "& > *": {
-          my: 1,
-        },
-      }}
-    >
-      <Box display="flex" alignItems="center" justifyContent="center">
+    <>
+      <Box
+        paddingBottom={20}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
         <Typography
           variant="h3"
           component="h3"
@@ -70,47 +144,46 @@ export default function HomeButtons() {
               priority={true}
               fill
               style={{ objectFit: "cover" }}
-              alt="Dog Saying Hi"
+              alt="Dog Licking Screen"
             />
           </div>
         )}
       </Box>
-
-      <ButtonGroup
-        orientation="vertical"
-        aria-label="vertical outlined button group"
-        color="secondary"
-        variant="contained"
-      >
-        {buttons}
-      </ButtonGroup>
-
-      <Box display="flex" alignItems="center" justifyContent="center">
-        <Typography
-          variant="h5"
-          component="h5"
-          style={{ fontWeight: "bold", marginRight: "1em" }}
-        >
-          Information
-        </Typography>
-      </Box>
-      <ButtonGroup
-        orientation="vertical"
-        aria-label="vertical outlined button group"
-        color="secondary"
-        variant="contained"
-      >
-        {buttons2}
-      </ButtonGroup>
-      <div>
-        <Image
-          src={Dog}
-          alt="Description of GIF"
-          width={100}
-          height={100}
-          className={styles["animated-gif"]}
+      <Box>
+        <JourneyStepper
+          activeStep={activeStep}
+          onStepClick={(index: number) => setActiveStep(index)}
+          small={small}
+          showCard={false}
         />
+      </Box>
+      <br />
+      <div>
+        {getStepsContent(activeStep)}
+
+        {/* {active === 2 ? () : null} */}
+        {activeStep === steps.length ? (
+          "Enjoy your time with your dog!"
+        ) : (
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <div>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleBack}
+                disabled={activeStep === 0}
+              >
+                Previous
+              </Button>
+
+              <Button variant="contained" color="primary" onClick={handleNext}>
+                Next
+                {activeStep === 0}
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
-    </Box>
+    </>
   );
 }
