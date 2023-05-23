@@ -5,3 +5,4 @@ export * from "./IChatGPTMessage";
 export * from "./ILesson";
 export * from "./IDogBreed";
 export * from "./IUser";
+export * from "./IDog";
