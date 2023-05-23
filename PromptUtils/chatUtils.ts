@@ -1,5 +1,7 @@
-import type { IChatGPTMessage } from "@/models/index";
+// type for making porompts to the API
+import type { IChatGPTMessage } from "@/models";
 
+// prompt that will construct what the bot will say
 const setupPrompt: IChatGPTMessage = {
   role: "system",
   content: `I am a professional in all things about dogs. 
@@ -11,19 +13,19 @@ const setupPrompt: IChatGPTMessage = {
         My answers will be a maximum of 75 tokens.`,
 };
 
-// define the prompt that will be sent to the API
+// function that constructs the prompt to the API
 export const generatePrompt = (
   conversation: IChatGPTMessage[]
 ): IChatGPTMessage[] => {
   return [setupPrompt, ...conversation];
 };
 
-// define the function that will parse the response from the API
-export const parseResponse = (completion: any) => {
-  // console.log(completion);
+// function that will parse the response from the API
+export const parseResponse = (completion: any): IChatGPTMessage => {
   const data = completion.data.choices[0].message;
-  // console.log(data);
-  const messageResponse = data.content;
-
+  const messageResponse: IChatGPTMessage = {
+    role: "assistant",
+    content: data.content,
+  };
   return messageResponse;
 };
