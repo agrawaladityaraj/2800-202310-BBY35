@@ -14,7 +14,7 @@ export default function ChatComponent() {
       ...conversation,
       { role: "user", content: value },
     ];
-    const response = await fetch("/api/openai/chatBot", {
+    const response = await fetch("/api/openai/generateChat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
