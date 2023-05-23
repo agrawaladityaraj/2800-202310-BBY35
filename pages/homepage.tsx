@@ -4,21 +4,31 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import DogGif from "@/assets/images/dog.gif";
-import styles from "/styles/Homepage.module.css"; // Make sure to put the correct path to your CSS file here
-import Dog from "@/assets/images/dog3.gif";
-
-const buttons = [
-  <Button key="one">Recommend a Dog</Button>,
-  <Button key="two">Browse Dog Breeds</Button>,
-  <Button key="three">New Dog</Button>,
-];
-
-const buttons2 = [
-  <Button key="one">About Us</Button>,
-  <Button key="two">Contact</Button>,
-];
+import styles from "/styles/Homepage.module.css";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import Check from "@mui/icons-material/Check";
+import PsychologyAltIcon from "@mui/icons-material/PsychologyAlt";
+import PetsIcon from "@mui/icons-material/Pets";
+import SchoolIcon from "@mui/icons-material/School";
+import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
+import StepConnector, {
+  stepConnectorClasses,
+} from "@mui/material/StepConnector";
+import { StepIconProps } from "@mui/material/StepIcon";
+import PropTypes from "prop-types";
+import clsx from "clsx";
+import JourneyStepper from "@/components/JourneyStepper";
+import useSmall from "@/Hooks/useSmall";
+import {
+  Stepper,
+  StepperProps,
+  createStyles,
+  getStylesRef as getRef,
+} from "@mantine/core";
 
 export default function HomeButtons() {
+  const small = useSmall(1000);
   const [clickCount, setclickCount] = useState(0);
   const [showDog, setShowDog] = useState(false);
 
@@ -37,19 +47,100 @@ export default function HomeButtons() {
       setclickCount(clickCount + 1);
     }
   };
+  const [activeStep, setActiveStep] = useState(0);
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  function getStepsContent(stepIndex) {
+    switch (stepIndex) {
+      case 0:
+        return (
+          <>
+            <h3>
+              There's a lot to think about before getting a dog! Let me know if
+              you have any questions.
+            </h3>
+            <Button
+              component={Link}
+              href="/chat"
+              variant="contained"
+              color="primary"
+            >
+              Ask me questions here!
+            </Button>
+          </>
+        );
+      case 1:
+        return (
+          <>
+            <h3>Tell me more about which dog you've chosen!</h3>
+            <Button
+              component={Link}
+              href="/dog"
+              variant="contained"
+              color="primary"
+            >
+              Enter your dog's information here
+            </Button>
+          </>
+        );
+      case 2:
+        return (
+          <>
+            <h3>
+              Training your dog is important to keep them and other people safe.
+            </h3>
+            <Button
+              component={Link}
+              href="/lessons"
+              variant="contained"
+              color="primary"
+            >
+              See more training
+            </Button>
+          </>
+        );
+      case 3:
+        return (
+          <>
+            <h3>Stay up to date on your dog's health!</h3>
+            <Button
+              component={Link}
+              href="/user_profile"
+              variant="contained"
+              color="primary"
+            >
+              View your dog's profile
+            </Button>
+          </>
+        );
+    }
+  }
+
+  function getSteps() {
+    return [
+      "Thinking about getting a dog",
+      "Choose a dog",
+      "Train your dog",
+      "Care for your dog",
+    ];
+  }
+  const steps = getSteps();
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        "& > *": {
-          my: 1,
-        },
-      }}
-    >
-      <Box display="flex" alignItems="center" justifyContent="center">
+    <>
+      <Box
+        paddingBottom={20}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
         <Typography
           variant="h3"
           component="h3"
@@ -71,47 +162,46 @@ export default function HomeButtons() {
               priority={true}
               fill
               style={{ objectFit: "cover" }}
-              alt="Dog Saying Hi"
+              alt="Dog Licking Screen"
             />
           </div>
         )}
       </Box>
-
-      <ButtonGroup
-        orientation="vertical"
-        aria-label="vertical outlined button group"
-        color="secondary"
-        variant="contained"
-      >
-        {buttons}
-      </ButtonGroup>
-
-      <Box display="flex" alignItems="center" justifyContent="center">
-        <Typography
-          variant="h5"
-          component="h5"
-          style={{ fontWeight: "bold", marginRight: "1em" }}
-        >
-          Information
-        </Typography>
-      </Box>
-      <ButtonGroup
-        orientation="vertical"
-        aria-label="vertical outlined button group"
-        color="secondary"
-        variant="contained"
-      >
-        {buttons2}
-      </ButtonGroup>
-      <div>
-        <Image
-          src={Dog}
-          alt="Description of GIF"
-          width={100}
-          height={100}
-          className={styles["animated-gif"]}
+      <Box>
+        <JourneyStepper
+          activeStep={activeStep}
+          onStepClick={(index: number) => setActiveStep(index)}
+          small={small}
+          showCard={false}
         />
+      </Box>
+      <br />
+      <div>
+        {getStepsContent(activeStep)}
+
+        {/* {active === 2 ? () : null} */}
+        {activeStep === steps.length ? (
+          "Enjoy your time with your dog!"
+        ) : (
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <div>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleBack}
+                disabled={activeStep === 0}
+              >
+                Previous
+              </Button>
+
+              <Button variant="contained" color="primary" onClick={handleNext}>
+                Next
+                {activeStep === 0}
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
-    </Box>
+    </>
   );
 }
