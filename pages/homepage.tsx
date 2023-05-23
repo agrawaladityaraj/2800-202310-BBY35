@@ -1,10 +1,9 @@
-import { Typography, Button, ButtonGroup, Box, Stack } from "@mui/material";
+import { Typography, Button, ButtonGroup, Box } from "@mui/material";
 import Logo from "@/assets/images/Logo.png";
 import Image from "next/image";
-import Link from "next/link";
 import React, { useState } from "react";
 import DogGif from "@/assets/images/dog.gif";
-import styles from "/styles/Homepage.module.css"; // Make sure to put the correct path to your CSS file here
+import styles from "/styles/Homepage.module.css";
 import Dog from "@/assets/images/dog3.gif";
 
 const buttons = [

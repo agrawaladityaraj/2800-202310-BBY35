@@ -1,24 +1,19 @@
-export type IExercise = {
-  name: string;
-  goal: string;
-  steps: string[];
-  tips: string[];
-};
+export interface ILessonsRequest {
+  age: string; // how old is the dog
+  breed: string; // what breed is the dog
+  energy: string; // what is the dogs energy level like
+  behaviour: string; // what is the dog's behaviour like
+  motivation: string; // what motivates the dog to learn
+  numberOfLessons: number; // number of lessons the owner wants
+  ownerGoals: string; // what does the owner want to achieve
+}
 
-export type ILessonResponse = {
-  lessonName: string;
-  lessonGoal: string;
-  lessonFocus: string;
-  lessonObjectives: string[];
-  exercises: IExercise[];
-};
+export interface ILessonExerciseDetails {
+  lessonName: string; // name of the lesson (focus, recall, loose lead walking, etc.)
+  lessonObjectives: string[]; // what the lesson will cover
+  lessonReason: string; // why the lesson is important for that dog
+}
 
-export type ILessonRequest = {
-  age: string;
-  breed: string;
-  energy: string;
-  behaviour: string;
-  motavation: string;
-  focus: string;
-  avoidExercises: string[];
-};
+export interface ILessonResponse {
+  lessons: ILessonExerciseDetails[]; // list of lessons that will be generated
+}
