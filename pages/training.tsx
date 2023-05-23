@@ -181,7 +181,7 @@ export default function Trial() {
               <CardContent>
                 <Typography variant="h6">{lesson.lessonName}</Typography>
                 <Typography variant="body1">Objectives:</Typography>
-                {lesson.lessonObjectives.map((objective, objIndex) => (
+                {lesson.lessonObjectives.map((objective: any, objIndex: index) => (
                   <Typography key={objIndex} variant="body1">
                     {`Objective ${objIndex + 1}: ${objective}`}
                   </Typography>
