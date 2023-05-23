@@ -57,14 +57,13 @@ export default function HomeButtons() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  function getStepsContent(stepIndex) {
+  function getStepsContent(stepIndex: number) {
     switch (stepIndex) {
       case 0:
         return (
           <>
             <h3>
-              There's a lot to think about before getting a dog! Let me know if
-              you have any questions.
+              {"There's a lot to think about before getting a dog! Let me know if you have any questions."}
             </h3>
             <Button
               component={Link}
@@ -79,14 +78,14 @@ export default function HomeButtons() {
       case 1:
         return (
           <>
-            <h3>Tell me more about which dog you've chosen!</h3>
+            <h3>{"Tell me more about which dog you've chosen!"}</h3>
             <Button
               component={Link}
               href="/dog"
               variant="contained"
               color="primary"
             >
-              Enter your dog's information here
+              {"Enter your dog's information here"}
             </Button>
           </>
         );
@@ -94,7 +93,7 @@ export default function HomeButtons() {
         return (
           <>
             <h3>
-              Training your dog is important to keep them and other people safe.
+              {"Training your dog is important to keep them and other people safe."}
             </h3>
             <Button
               component={Link}
@@ -102,21 +101,21 @@ export default function HomeButtons() {
               variant="contained"
               color="primary"
             >
-              See more training
+              {"See more training"}
             </Button>
           </>
         );
       case 3:
         return (
           <>
-            <h3>Stay up to date on your dog's health!</h3>
+            <h3>{"Stay up to date on your dog's health!"}</h3>
             <Button
               component={Link}
               href="/user_profile"
               variant="contained"
               color="primary"
             >
-              View your dog's profile
+              {"View your dog's profile"}
             </Button>
           </>
         );
