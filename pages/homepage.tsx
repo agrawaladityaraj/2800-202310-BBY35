@@ -38,7 +38,7 @@ export default function HomeButtons() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  function getStepsContent(stepIndex: any) {
+  function getStepsContent(stepIndex: number) {
     switch (stepIndex) {
       case 0:
         return (
@@ -76,7 +76,9 @@ export default function HomeButtons() {
         return (
           <>
             <h3>
-              Training your dog is important to keep them and other people safe.
+              {
+                "Training your dog is important to keep them and other people safe."
+              }
             </h3>
             <Button
               component={Link}
@@ -84,7 +86,7 @@ export default function HomeButtons() {
               variant="contained"
               color="primary"
             >
-              See more training
+              {"See more training"}
             </Button>
           </>
         );
