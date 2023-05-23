@@ -7,3 +7,4 @@ export * from "./IDog";
 export * from "./IChatGPTMessage";
 export * from "./ILesson";
 export * from "./IExercise";
+export * from "./IDog";
