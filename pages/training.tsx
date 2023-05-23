@@ -176,7 +176,7 @@ export default function Trial() {
             Lessons generated: {result.lessons?.length}
           </Typography>
 
-          {result.lessons?.map((lesson, index) => (
+          {result.lessons?.map((lesson: any, index: number) => (
             <Card key={index} variant="outlined" style={{ margin: "10px 0" }}>
               <CardContent>
                 <Typography variant="h6">{lesson.lessonName}</Typography>
