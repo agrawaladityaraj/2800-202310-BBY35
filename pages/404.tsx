@@ -1,6 +1,6 @@
 import Image from "next/image";
 import lostDog from "@/assets/images/lostDog.png";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 
 export default function Custom404() {
@@ -18,10 +18,13 @@ export default function Custom404() {
         justifyContent: "center",
       }}
     >
-      <h1 style={{ textAlign: "center" }}>Whoops! You're lost.</h1>
-
+      <Typography variant="h1" textAlign="center">
+        Whoops! You're lost.
+      </Typography>
       <Image src={lostDog} alt="Lost Dog" width={360} height={330} />
-      <h3 style={{ textAlign: "center" }}>Just like a lost puppy...</h3>
+      <Typography variant="h3" textAlign="center" mb={2}>
+        Just like a lost puppy
+      </Typography>
       <Button
         variant="contained"
         color="secondary"
