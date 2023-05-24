@@ -1,9 +1,11 @@
-// import required types for requesting and sending data to the API
+// import required types for requesting and recieving data to the API
 import type {
   IExerciseRequest,
   IExerciseResponse,
   IChatGPTMessage,
 } from "@/models";
+// function that will correct the JSON response from the API, if it is not valid
+import correctJSON from "@/Utils/correctJSON";
 
 // shape of the response from the API
 const shape = `
@@ -59,8 +61,26 @@ export const generatePrompt = (
 };
 
 // function that will parse the response from the API
-export const parseResponse = (completion: any): IExerciseResponse => {
+export const parseResponse = async (
+  completion: any
+): Promise<IExerciseResponse> => {
   const data = completion.data.choices[0].message;
-  const exerciseResponse: IExerciseResponse = JSON.parse(data.content);
-  return exerciseResponse;
+
+  try {
+    const exerciseResponse: IExerciseResponse = JSON.parse(data.content);
+    return exerciseResponse;
+  } catch (error) {
+    console.log("Error parsing JSON, attempting to correct...", error);
+    try {
+      const correctedResponse = (await correctJSON(
+        data.content,
+        shape,
+        "exercise"
+      )) as IExerciseResponse;
+      return correctedResponse;
+    } catch (error) {
+      console.log("Error correcting JSON", error);
+      throw new Error("Error correcting JSON");
+    }
+  }
 };

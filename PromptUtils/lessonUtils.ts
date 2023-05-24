@@ -4,6 +4,8 @@ import type {
   IChatGPTMessage,
   ILessonResponse,
 } from "@/models";
+// function that will correct the JSON response from the API, if it is not valid
+import correctJSON from "@/Utils/correctJSON";
 
 const shape = `
 {
@@ -47,8 +49,26 @@ export const generatePrompt = (
 };
 
 // function that will parse the response from the API
-export const parseResponse = (completion: any): ILessonResponse => {
+export const parseResponse = async (
+  completion: any
+): Promise<ILessonResponse> => {
   const data = completion.data.choices[0].message;
-  const lessonResponse: ILessonResponse = JSON.parse(data.content);
-  return lessonResponse;
+
+  try {
+    const lessonResponse: ILessonResponse = JSON.parse(data.content);
+    return lessonResponse;
+  } catch (error) {
+    console.log("Error parsing JSON, attempting to correct...", error);
+    try {
+      const correctedResponse = (await correctJSON(
+        data.content,
+        shape,
+        "lesson"
+      )) as ILessonResponse;
+      return correctedResponse;
+    } catch (correctionError) {
+      console.log("Error correcting JSON", correctionError);
+      throw new Error("Failed to parse and correct JSON");
+    }
+  }
 };
