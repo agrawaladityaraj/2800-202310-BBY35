@@ -1,5 +1,7 @@
+// type used for conversing with the API
 import type { IChatGPTMessage } from "@/models";
 
+// message to the api that is the set up prompt
 const setupPrompt: IChatGPTMessage = {
   role: "system",
   content: `I am a professional in all things about dogs. 
@@ -8,9 +10,11 @@ const setupPrompt: IChatGPTMessage = {
         I will explain in detail why I reccomend each breed.
         I will lead the conversation to guide the user to the right dog for them.
         I will ask the questions one at a time and wait for the user's response.
+        If the user goes off topic, I will bring the conversation back to the topic.
         If the questions are not answered, I will ask the questions again.
         If I do not get enough information from the questions to provide a good dog breed reccomendation,
         I will ask more questions to provide a more accurate reccomendation.
+        The conversation for finding the users suggested dog breed will start with any sort of greeting from the user.
         I may ask the user's the following questions to help me find the right dog for them:
         1. What size dog do you want?
         2. What is your living situation?
@@ -28,12 +32,14 @@ const setupPrompt: IChatGPTMessage = {
         `,
 };
 
+// function that wil construct the prompt for the API which includes all the messages from the conversation
 export const generatePrompt = (
   conversation: IChatGPTMessage[]
 ): IChatGPTMessage[] => {
   return [setupPrompt, ...conversation];
 };
 
+// function that will parse the response from the API
 export const parseResponse = (completion: any): IChatGPTMessage => {
   const data = completion.data.choices[0].message;
   const messageResponse: IChatGPTMessage = {
