@@ -22,8 +22,6 @@ export default function DogLessons() {
       const selectedDog = data.find((dg: IDog) => dg.id === id);
       if (selectedDog) {
         setDog(selectedDog);
-      } else {
-        setAlert({ open: true, payload: "Dog not found!", severity: "error" });
       }
     } catch (error) {
       setAlert({ open: true, payload: "Dog not found!", severity: "error" });

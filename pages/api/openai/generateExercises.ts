@@ -18,9 +18,8 @@ export default async function handler(
     temperature: 0.4,
     presence_penalty: 1,
   });
-  // parse the response from the api
-  const parsedData = parseResponse(completion);
-  // return the parsed data
-  console.log(parsedData);
+
+  const parsedData: IExerciseResponse = parseResponse(completion);
+
   res.status(200).json(parsedData);
 }
