@@ -19,7 +19,7 @@ export default function Custom404() {
       }}
     >
       <Typography variant="h1" textAlign="center">
-        Whoops! You're lost.
+        {"Whoops! You're lost."}
       </Typography>
       <Image src={lostDog} alt="Lost Dog" width={360} height={330} />
       <Typography variant="h3" textAlign="center" mb={2}>
