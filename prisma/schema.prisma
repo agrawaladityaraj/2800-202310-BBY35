@@ -146,3 +146,23 @@ model DogBreed {
   commonHealthProblems String
   Dog                  Dog[]
 }
+
+model Lesson {
+  id            String     @id @default(cuid())
+  lessonName    String
+  lessonGoal    String
+  lessonFocus   String
+  lessonObjects String[]
+  exercises     Exercise[]
+}
+
+model Exercise {
+  id       String   @id @default(cuid())
+  name     String
+  goal     String
+  steps    String[]
+  tips     String[]
+  lessonId String
+  Lesson   Lesson   @relation(fields: [lessonId], references: [id])
+  @@index([lessonId])
+}
