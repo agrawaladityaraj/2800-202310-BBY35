@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import lostDog from "@/assets/images/lostDog.png";
@@ -18,7 +17,7 @@ export default function Custom404() {
 
       <Image src={lostDog} alt="Lost Dog" width={360} height={330} />
       <h3 style={{ textAlign: "center" }}>Just like a lost puppy...</h3>
-      <Link href="/" style={{ marginBottom: 7 }}>
+      <Link href="/">
         <Button variant="contained" color="secondary" size="small">
           Take me back home
         </Button>
