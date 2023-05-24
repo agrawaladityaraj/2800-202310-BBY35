@@ -20,6 +20,6 @@ export default async function handler(
   });
 
   const parsedData: IExerciseResponse = parseResponse(completion);
-
+  console.log(parsedData);
   res.status(200).json(parsedData);
 }

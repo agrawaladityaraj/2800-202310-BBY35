@@ -74,6 +74,7 @@ model Dog {
   vaccines         Vaccine[]
   trainingVideos   DogTrainingVideo[]
   medicalDocuments MedicalDocument[]
+  lessons          Lesson[]
 
   @@index([ownerId])
 }
@@ -148,21 +149,25 @@ model DogBreed {
 }
 
 model Lesson {
-  id            String     @id @default(cuid())
-  lessonName    String
-  lessonGoal    String
-  lessonFocus   String
-  lessonObjects String[]
-  exercises     Exercise[]
+  id               String     @id @default(cuid())
+  lessonName       String
+  lessonObjectives String[]
+  lessonReason     String
+  dogId            String
+  Dog              Dog        @relation(fields: [dogId], references: [id])
+  exercises        Exercise[]
+
+  @@index([dogId])
 }
 
 model Exercise {
-  id       String   @id @default(cuid())
-  name     String
-  goal     String
-  steps    String[]
-  tips     String[]
-  lessonId String
-  Lesson   Lesson   @relation(fields: [lessonId], references: [id])
+  id        String   @id @default(cuid())
+  name      String
+  objective String
+  steps     String[]
+  tips      String[]
+  lessonId  String
+  Lesson    Lesson   @relation(fields: [lessonId], references: [id])
+
   @@index([lessonId])
 }

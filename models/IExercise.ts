@@ -11,7 +11,7 @@ export type IExerciseRequest = {
 
 export type IExercise = {
   name: string; // name of the exercise
-  goal: string; // what the exercise is trying to achieve
+  objective: string; // what the exercise is trying to achieve
   steps: string[]; // steps to complete the exercise
   tips: string[]; // tips to help complete the exercise
 };
