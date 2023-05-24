@@ -10,6 +10,7 @@ export default async function handler(
     const dogs = await prisma.dog.findMany({
       include: {
         breed: true,
+        vaccines: true,
       },
       where: {
         ownerId: ownerId?.toString(),
