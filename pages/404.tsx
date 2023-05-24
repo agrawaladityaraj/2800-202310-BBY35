@@ -1,9 +1,14 @@
-import Link from "next/link";
 import Image from "next/image";
 import lostDog from "@/assets/images/lostDog.png";
 import { Button } from "@mui/material";
+import { useRouter } from "next/router";
 
 export default function Custom404() {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/");
+  };
   return (
     <div
       style={{
@@ -17,11 +22,14 @@ export default function Custom404() {
 
       <Image src={lostDog} alt="Lost Dog" width={360} height={330} />
       <h3 style={{ textAlign: "center" }}>Just like a lost puppy...</h3>
-      <Link href="/">
-        <Button variant="contained" color="secondary" size="small">
-          Take me back home
-        </Button>
-      </Link>
+      <Button
+        variant="contained"
+        color="secondary"
+        size="small"
+        onClick={handleClick}
+      >
+        Take me back home
+      </Button>
     </div>
   );
 }
