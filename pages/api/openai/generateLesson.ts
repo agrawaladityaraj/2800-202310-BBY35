@@ -18,5 +18,6 @@ export default async function handler(
   // parse the response from the api
   const parsedData = parseResponse(completion);
   // return the parsed data
+  console.log(parsedData);
   res.status(200).json(parsedData);
 }
