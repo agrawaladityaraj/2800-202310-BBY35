@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Box, Typography, Button } from "@mui/material";
 import type { IChatGPTMessage } from "@/models/index";
 
@@ -6,6 +6,14 @@ export default function ChatComponent() {
 const [value, setValue] = useState<string>("");
 const [conversation, setConversation] = useState<IChatGPTMessage[]>([]);
 const [buttonDisabled, setButtonDisabled] = useState(false);
+
+useEffect(() => {
+  const disabledStatus = localStorage.getItem("buttonDisabled");
+  if (disabledStatus) {
+    setButtonDisabled(JSON.parse(disabledStatus));
+  }
+}, []);
+
 
  // This is the function that sends the message to the chatbot
   const sendMessage = async () => {
@@ -33,7 +41,9 @@ const [buttonDisabled, setButtonDisabled] = useState(false);
     }, 24 * 60 * 60 * 1000);
   };
 
- 
+  useEffect(() => {
+    localStorage.setItem("buttonDisabled", JSON.stringify(buttonDisabled));
+  }, [buttonDisabled]);
 
   return (
     <>
