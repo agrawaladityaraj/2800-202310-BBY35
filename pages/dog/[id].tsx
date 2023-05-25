@@ -40,32 +40,32 @@ interface Dog {
 function DogProfile() {
   const router = useRouter();
   const { id } = router.query;
-  const [dog, setDog] = useState<Dog | null>(null);
   const { user }: IContext = useContext(Context);
 
+  const [dog, setDog] = useState<Dog | null>(null);
   const [vaccineName, setVaccineName] = useState("");
   const [vaccineDate, setVaccineDate] = useState("");
 
-  useEffect(() => {
-    if (user.id) {
-      const fetchDogData = async () => {
-        try {
-          const dogData = await fetch(`/api/dog/${user.id}`);
-          const dogs = await dogData.json();
-          const selectedDog = dogs.find((dog: Dog) => dog.id === id);
-
-          if (selectedDog) {
-            setDog(selectedDog);
-          }
-        } catch (error) {
-          console.error("Error fetching dog data:", error);
-        }
-      };
-
-      if (id) {
-        fetchDogData();
+  const fetchDogData = async () => {
+    try {
+      const dogData = await fetch(`/api/dog/${user.id}`);
+      const dogs = await dogData.json();
+      const selectedDog = dogs.find((dog: Dog) => dog.id === id);
+      if (selectedDog) {
+        setDog(selectedDog);
       }
+    } catch (error) {
+      console.error("Error fetching dog data:", error);
     }
+  };
+
+  useEffect(() => {
+    if (user.id && id) {
+      (async () => {
+        await fetchDogData();
+      })();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, user, dog]);
 
   if (!dog) {
