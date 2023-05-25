@@ -180,8 +180,13 @@ function DogProfile() {
               }}
             />
           </Box>
-          <Box ml={2} mr={2}>
-            <Button variant="contained" onClick={handleAddVaccine} size="small">
+          <Box ml={3} mr={2}>
+            <Button
+              variant="contained"
+              onClick={handleAddVaccine}
+              size="small"
+              color="secondary"
+            >
               Add Vaccine
             </Button>
           </Box>
