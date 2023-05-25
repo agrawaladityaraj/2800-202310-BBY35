@@ -5,27 +5,11 @@ import Link from "next/link";
 import React, { useState } from "react";
 import DogGif from "@/assets/images/dog.gif";
 import styles from "/styles/Homepage.module.css";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
-import Check from "@mui/icons-material/Check";
-import PsychologyAltIcon from "@mui/icons-material/PsychologyAlt";
-import PetsIcon from "@mui/icons-material/Pets";
-import SchoolIcon from "@mui/icons-material/School";
-import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
-import StepConnector, {
-  stepConnectorClasses,
-} from "@mui/material/StepConnector";
-import { StepIconProps } from "@mui/material/StepIcon";
-import PropTypes from "prop-types";
-import clsx from "clsx";
+
 import JourneyStepper from "@/components/JourneyStepper";
 import useSmall from "@/Hooks/useSmall";
-import {
-  Stepper,
-  StepperProps,
-  createStyles,
-  getStylesRef as getRef,
-} from "@mantine/core";
+import DailyTip from "@/components/DailyTip";
+import ChatComponent from "@/components/ChatComponent";
 
 export default function HomeButtons() {
   const small = useSmall(1000);
@@ -182,8 +166,8 @@ export default function HomeButtons() {
         {activeStep === steps.length ? (
           "Enjoy your time with your dog!"
         ) : (
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <div>
+          <div style={{  display: "flex", justifyContent: "center"}}>
+            <div style={{  justifyContent: "center", position:"fixed"}}>
               <Button
                 variant="contained"
                 color="primary"
@@ -197,7 +181,10 @@ export default function HomeButtons() {
                 Next
                 {activeStep === 0}
               </Button>
-            </div>
+              </div>
+              <div>
+                <DailyTip/>
+              </div>
           </div>
         )}
       </div>
