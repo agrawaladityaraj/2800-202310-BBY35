@@ -131,7 +131,7 @@ export default function HomeButtons() {
               }}
             >
               <Title order={4}>
-                Stay up to date on your dog's health!
+                {"Stay up to date on your dog's health!"}
               </Title>
               <Button
                 component={Link}
