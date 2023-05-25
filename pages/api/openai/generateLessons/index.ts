@@ -29,7 +29,9 @@ export default async function handler(
     presence_penalty: 1,
   });
 
-  const parsedData: ILessonResponse = parseLessonResponse(lessonCompletion);
+  const parsedData: ILessonResponse = await parseLessonResponse(
+    lessonCompletion
+  );
   console.log(parsedData);
   const exercisesCompletion = await Promise.all(
     parsedData.lessons.map((lesson: ILessonExerciseDetails) =>

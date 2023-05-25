@@ -35,7 +35,9 @@ export default async function handler(
     presence_penalty: 1,
   });
 
-  const parsedData: ILessonResponse = parseLessonResponse(lessonCompletion);
+  const parsedData: ILessonResponse = await parseLessonResponse(
+    lessonCompletion
+  );
   const exercisesCompletion = await Promise.all(
     parsedData.lessons.map((lesson: ILessonExerciseDetails) =>
       openai.createChatCompletion({
@@ -55,8 +57,8 @@ export default async function handler(
       })
     )
   );
-  const parsedExercises: IExerciseResponse[] = exercisesCompletion.map(
-    (exercise: any) => parseExerciseResponse(exercise)
+  const parsedExercises: IExerciseResponse[] = await Promise.all(
+    exercisesCompletion.map((exercise: any) => parseExerciseResponse(exercise))
   );
 
   const lessons = await Promise.all(
