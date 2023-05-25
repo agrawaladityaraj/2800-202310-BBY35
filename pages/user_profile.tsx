@@ -44,12 +44,17 @@ export default function UserProfile() {
         <Typography variant="body1" style={{ marginBottom: "1em" }}>
           {data?.user?.email}
         </Typography>
-        <Box marginBottom="2em">
-        <Link href="/dog" passHref>
-          <Button variant="contained" color="secondary" size="large">
-            My Dogs
-          </Button>
-        </Link>
+        <Box marginBottom="1em">
+          <Link href="/dog" passHref>
+            <Button
+              variant="contained"
+              fullWidth
+              color="secondary"
+              size="small"
+            >
+              My Dogs
+            </Button>
+          </Link>
         </Box>
         <Button
           variant="contained"
