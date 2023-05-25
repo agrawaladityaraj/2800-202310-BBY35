@@ -12,6 +12,7 @@ import MountedWrapper from "@/components/MountedWrapper";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Alert from "@/components/Alert";
+import Chat from "@/components/Chat";
 
 let theme = createTheme({
   typography: {
@@ -59,6 +60,7 @@ export default function MyAppBase({
               <Component {...pageProps} />
               <Footer />
               <Alert />
+              <Chat />
             </Box>
           </MountedWrapper>
         </ThemeProvider>
