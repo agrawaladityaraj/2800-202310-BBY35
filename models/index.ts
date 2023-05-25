@@ -3,6 +3,8 @@ export * from "./IAlert";
 export * from "./IState";
 export * from "./IDogBreed";
 export * from "./IUser";
+export * from "./IDog";
 export * from "./IChatGPTMessage";
 export * from "./ILesson";
 export * from "./IExercise";
+export * from "./IDog";

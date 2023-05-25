@@ -60,6 +60,7 @@ export default function Trial() {
     };
 
     fetchExercises();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLesson]);
 
   const handleGenerateClick = (lesson: ILessonExerciseDetails) => {
@@ -181,11 +182,13 @@ export default function Trial() {
               <CardContent>
                 <Typography variant="h6">{lesson.lessonName}</Typography>
                 <Typography variant="body1">Objectives:</Typography>
-                {lesson.lessonObjectives.map((objective: any, objIndex: number) => (
-                  <Typography key={objIndex} variant="body1">
-                    {`Objective ${objIndex + 1}: ${objective}`}
-                  </Typography>
-                ))}
+                {lesson.lessonObjectives.map(
+                  (objective: any, objIndex: number) => (
+                    <Typography key={objIndex} variant="body1">
+                      {`Objective ${objIndex + 1}: ${objective}`}
+                    </Typography>
+                  )
+                )}
                 <Typography variant="body2">{`Reason: ${lesson.lessonReason}`}</Typography>
                 <Button
                   variant="contained"
