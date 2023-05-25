@@ -35,7 +35,6 @@ interface Dog {
   pictureUrl: string;
   breed: DogBreed;
   vaccines: Vaccine[];
-  // Add more properties as needed
 }
 
 function DogProfile() {
@@ -67,7 +66,7 @@ function DogProfile() {
       })();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, user]);
+  }, [id, user, dog]);
 
   if (!dog) {
     return <div>Loading...</div>;
@@ -105,6 +104,25 @@ function DogProfile() {
     }
   );
 
+  function calculateAge(formattedBirthDate: Date): number {
+    const today = new Date();
+    const birthdateObj = new Date(formattedBirthDate);
+    let age = today.getFullYear() - birthdateObj.getFullYear();
+
+    // Check if the dog's birthday has occurred this year
+    const isBirthdayPassed =
+      today.getMonth() > birthdateObj.getMonth() ||
+      (today.getMonth() === birthdateObj.getMonth() &&
+        today.getDate() >= birthdateObj.getDate());
+
+    // If the dog's birthday hasn't passed yet this year, subtract 1 from the age
+    if (!isBirthdayPassed) {
+      age--;
+    }
+
+    return age;
+  }
+
   return (
     <AuthWrapper>
       <Grid
@@ -133,6 +151,9 @@ function DogProfile() {
             <Typography variant="subtitle1" fontSize={22}>
               <strong>Birthdate:</strong> {formattedBirthDate}
             </Typography>
+            <Typography variant="subtitle1" fontSize={22}>
+              <strong>Age:</strong> {calculateAge(new Date(formattedBirthDate))} years
+            </Typography>
           </Box>
           {!dog.vaccines.length ? (
             <></>
@@ -146,9 +167,11 @@ function DogProfile() {
                   dog.vaccines.map((vaccine) => (
                     <ListItem key={vaccine.id}>
                       <Typography fontWeight="bold">
-                        {vaccine.name} -{" "}
+                        {vaccine.name + " Vaccine"}
                       </Typography>
+                      <Typography>&nbsp;</Typography>
                       <Typography>
+                        {"expires on "}
                         {new Date(vaccine.date).toLocaleDateString()}
                       </Typography>
                     </ListItem>
@@ -168,7 +191,7 @@ function DogProfile() {
           </Box>
           <Box marginBottom={2} ml={3} mr={2}>
             <TextField
-              label="Vaccine Date"
+              label="Vaccine Expiry Date"
               type="date"
               fullWidth
               value={vaccineDate}
@@ -180,8 +203,13 @@ function DogProfile() {
               }}
             />
           </Box>
-          <Box ml={2} mr={2}>
-            <Button variant="contained" onClick={handleAddVaccine} size="small">
+          <Box ml={3} mr={2}>
+            <Button
+              variant="contained"
+              onClick={handleAddVaccine}
+              size="small"
+              color="secondary"
+            >
               Add Vaccine
             </Button>
           </Box>
