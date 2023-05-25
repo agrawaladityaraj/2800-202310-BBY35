@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import {
-  IconButton,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -10,11 +10,13 @@ import {
   Box,
   Paper,
   CircularProgress,
+  Fab,
 } from "@mui/material";
-import ChatIcon from "@mui/icons-material/Chat";
+
+import chatIcon from "@/assets/images/chatbot.png";
 import type { IChatGPTMessage } from "@/models/index";
 
-export default function ChatComponent() {
+export default function Chat() {
   const [open, setOpen] = useState<boolean>(false);
   const [value, setValue] = useState<string>("");
   const [conversation, setConversation] = useState<IChatGPTMessage[]>([
@@ -64,9 +66,13 @@ export default function ChatComponent() {
 
   return (
     <>
-      <IconButton onClick={toggleChat}>
-        <ChatIcon />
-      </IconButton>
+      <Fab
+        sx={{ position: "fixed", bottom: "5vw", right: "5vw" }}
+        onClick={toggleChat}
+        color="secondary"
+      >
+        <Image src={chatIcon} width={30} height={30} alt="Chat Icon" />
+      </Fab>
       <Dialog open={open} onClose={toggleChat} fullWidth maxWidth="sm">
         <DialogTitle>IntelliPaws Chat</DialogTitle>
         <DialogContent

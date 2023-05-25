@@ -1,4 +1,4 @@
-import { Typography, Button, ButtonGroup, Box, Stack } from "@mui/material";
+import { Typography, Button, Box } from "@mui/material";
 import Logo from "@/assets/images/Logo.png";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,7 +9,6 @@ import styles from "/styles/Homepage.module.css";
 import JourneyStepper from "@/components/JourneyStepper";
 import useSmall from "@/Hooks/useSmall";
 import DailyTip from "@/components/DailyTip";
-import ChatComponent from "@/components/ChatComponent";
 
 export default function HomeButtons() {
   const small = useSmall(1000);
@@ -46,7 +45,13 @@ export default function HomeButtons() {
       case 0:
         return (
           <>
-            <div style={{ width: "80%", justifyContent: "center", flexDirection: "column" }}>
+            <div
+              style={{
+                width: "80%",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
               <h3>
                 {
                   "There's a lot to think about before getting a dog! Let me know if you have any questions."
@@ -201,7 +206,13 @@ export default function HomeButtons() {
           alignItems: "center",
         }}
       >
-        <div style={{ paddingTop: "25px",flexDirection: "column", justifyContent: "center" }}>
+        <div
+          style={{
+            paddingTop: "25px",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
           <Button
             variant="contained"
             color="primary"
