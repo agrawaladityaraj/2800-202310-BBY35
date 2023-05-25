@@ -24,8 +24,10 @@ import InfoIcon from "@mui/icons-material/Info";
 
 import useSmall from "@/Hooks/useSmall";
 import MountedWrapper from "@/components/MountedWrapper";
-
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import PetsIcon from "@mui/icons-material/Pets";
 import Logo from "@/assets/images/Logo.png";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 interface INavLink {
   href: string;
@@ -35,10 +37,12 @@ interface INavLink {
 
 const leftNavLinks: INavLink[] = [
   { href: "/homepage", label: "IntelliPaws", icon: <InfoIcon /> },
+  { href: "/user_profile", label: "Account", icon: <AccountCircleIcon /> },
 ];
 
 const rightNavLinks: INavLink[] = [
-  { href: "/user_profile", label: "Account", icon: <ContactlessIcon /> }
+  { href: "/dog", label: "My Dogs", icon: <PetsIcon /> },
+  { href: "/add_dog", label: "Add new Dog", icon: <AddCircleIcon /> },
 ];
 
 interface Props {
