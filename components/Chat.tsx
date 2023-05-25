@@ -12,6 +12,7 @@ import {
   CircularProgress,
   Fab,
 } from "@mui/material";
+import { Tooltip } from "@mantine/core";
 
 import chatIcon from "@/assets/images/chatbot.png";
 import type { IChatGPTMessage } from "@/models/index";
@@ -66,13 +67,15 @@ export default function Chat() {
 
   return (
     <>
-      <Fab
-        sx={{ position: "fixed", bottom: "5vw", right: "5vw" }}
-        onClick={toggleChat}
-        color="secondary"
-      >
-        <Image src={chatIcon} width={30} height={30} alt="Chat Icon" />
-      </Fab>
+      <Tooltip label="Chatbot">
+        <Fab
+          sx={{ position: "fixed", bottom: "5vw", right: "5vw" }}
+          onClick={toggleChat}
+          color="secondary"
+        >
+          <Image src={chatIcon} width={38} height={38} alt="Chat Icon" />
+        </Fab>
+      </Tooltip>
       <Dialog open={open} onClose={toggleChat} fullWidth maxWidth="sm">
         <DialogTitle>IntelliPaws Chat</DialogTitle>
         <DialogContent
