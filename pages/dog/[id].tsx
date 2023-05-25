@@ -68,7 +68,7 @@ function DogProfile() {
       })();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, user, dog]);
+  }, [id, user]);
 
   if (!dog) {
     return <div>Loading...</div>;
