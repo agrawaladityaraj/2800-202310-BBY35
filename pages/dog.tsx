@@ -36,59 +36,57 @@ function DogPage() {
   return (
     <AuthWrapper>
       <>
-      <div style={{ margin: "16px" }}>
-        <Typography variant="h2" component="h1" m={3}>
-          My Dogs
-        </Typography>
-        <List sx={{ margin: "0 16px" }}>
-          {dogs.map((dog) => (
-            <ListItem
-              key={dog.id}
-              component="li"
-              sx={{
-                padding: "6px",
-                "& a": {
-                  textDecoration: "none",
-                },
-              }}
-            >
-              <Link href={`/dog/${dog.id}`} passHref>
-                <ListItemText
-                  primary={
-                    <Typography
-                      variant="h5"
-                      color={"black"}
-                      fontWeight={"bold"}
-                      // component="span"
-                      // sx={{ textDecoration: "none" }}
-                    >
-                      {dog.name}
-                    </Typography>
-                  }
-                />
-              </Link>
-            </ListItem>
-          ))}
-        </List>
-        <div style={{ textAlign: "center" }}>
-          <Image
-            src={dogwithfriends}
-            alt="Dog Image"
-            width={330}
-            height={190}
-          />
+        <div style={{ margin: "16px" }}>
+          <Typography variant="h2" component="h1" m={3}>
+            My Dogs
+          </Typography>
+          <List sx={{ margin: "0 16px" }}>
+            {dogs.map((dog) => (
+              <ListItem
+                key={dog.id}
+                component="li"
+                sx={{
+                  padding: "6px",
+                  "& a": {
+                    textDecoration: "none",
+                  },
+                }}
+              >
+                <Link href={`/dog/${dog.id}`} passHref>
+                  <ListItemText
+                    primary={
+                      <Typography
+                        variant="h5"
+                        color={"black"}
+                        fontWeight={"bold"}
+                      >
+                        {dog.name}
+                      </Typography>
+                    }
+                  />
+                </Link>
+              </ListItem>
+            ))}
+          </List>
+          <div style={{ textAlign: "center" }}>
+            <Image
+              src={dogwithfriends}
+              alt="Dog Image"
+              width={330}
+              height={190}
+            />
+          </div>
         </div>
-      </div>
-      <Box>
-        <Button
-          component={Link}
-          href="/add_dog/adopted"
-          variant="contained"
-          color="primary"
-        >
-          Add a new dog
-        </Button>
-      </Box>
+        <Box>
+          <Button
+            component={Link}
+            href="/add_dog/adopted"
+            variant="contained"
+            color="primary"
+          >
+            Add a new dog
+          </Button>
+        </Box>
       </>
     </AuthWrapper>
   );
