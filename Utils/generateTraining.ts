@@ -103,6 +103,14 @@ export default async function generateTraining(
             )
           )
       );
+      await prisma.dog.update({
+        where: {
+          id: dogId,
+        },
+        data: {
+          generatingLessons: false,
+        },
+      });
     } catch (_) {
       await prisma.dog.update({
         where: {
