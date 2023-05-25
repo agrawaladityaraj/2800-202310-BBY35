@@ -1,10 +1,12 @@
-import { Typography, Button, Box } from "@mui/material";
+import { Button, Typography, Box, Stack } from "@mui/material";
 import Logo from "@/assets/images/Logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import DogGif from "@/assets/images/dog.gif";
 import styles from "/styles/Homepage.module.css";
+import { Title } from '@mantine/core';
+
 
 import JourneyStepper from "@/components/JourneyStepper";
 import useSmall from "@/Hooks/useSmall";
@@ -52,16 +54,16 @@ export default function HomeButtons() {
                 flexDirection: "column",
               }}
             >
-              <h3>
+              <Title order={4}>
                 {
                   "There's a lot to think about before getting a dog! Let me know if you have any questions."
                 }
-              </h3>
+              </Title>
               <Button
                 component={Link}
-                href="/chat"
+                href="/reccomendation"
                 variant="contained"
-                color="primary"
+                color="secondary"
               >
                 Ask me questions here!
               </Button>
@@ -78,12 +80,14 @@ export default function HomeButtons() {
                 flexDirection: "column",
               }}
             >
-              <h3>{"Tell me more about which dog you've chosen!"}</h3>
+              <Title order={4}>
+                {"Tell me more about which dog you've chosen!"}
+              </Title>
               <Button
                 component={Link}
-                href="/dog"
+                href="/add_dog/adopted"
                 variant="contained"
-                color="primary"
+                color="secondary"
               >
                 {"Enter your dog's information here"}
               </Button>
@@ -100,16 +104,16 @@ export default function HomeButtons() {
                 flexDirection: "column",
               }}
             >
-              <h3>
+              <Title order={4}>
                 {
                   "Training your dog is important to keep them and other people safe."
                 }
-              </h3>
+              </Title>
               <Button
                 component={Link}
-                href="/lessons"
+                href="/dog"
                 variant="contained"
-                color="primary"
+                color="secondary"
               >
                 {"See more training"}
               </Button>
@@ -126,12 +130,14 @@ export default function HomeButtons() {
                 flexDirection: "column",
               }}
             >
-              <h3>{"Stay up to date on your dog's health!"}</h3>
+              <Title order={4}>
+                {"Stay up to date on your dog's health!"}
+              </Title>
               <Button
                 component={Link}
                 href="/user_profile"
                 variant="contained"
-                color="primary"
+                color="secondary"
               >
                 {"View your dog's profile"}
               </Button>
@@ -213,24 +219,6 @@ export default function HomeButtons() {
             justifyContent: "center",
           }}
         >
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleBack}
-            disabled={activeStep === 0}
-          >
-            Previous
-          </Button>
-
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleNext}
-            disabled={activeStep === 3}
-          >
-            Next
-            {activeStep === 0}
-          </Button>
           <div>
             <DailyTip />
           </div>
