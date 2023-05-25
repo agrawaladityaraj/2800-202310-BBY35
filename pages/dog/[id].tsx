@@ -66,7 +66,7 @@ function DogProfile() {
       })();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, user, dog]);
+  }, [id, user]);
 
   if (!dog) {
     return <div>Loading...</div>;
@@ -152,7 +152,8 @@ function DogProfile() {
               <strong>Birthdate:</strong> {formattedBirthDate}
             </Typography>
             <Typography variant="subtitle1" fontSize={22}>
-              <strong>Age:</strong> {calculateAge(new Date(formattedBirthDate))} years
+              <strong>Age:</strong> {calculateAge(new Date(formattedBirthDate))}{" "}
+              years
             </Typography>
           </Box>
           {!dog.vaccines.length ? (
