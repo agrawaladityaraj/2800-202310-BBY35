@@ -17,3 +17,11 @@ export interface ILessonExerciseDetails {
 export interface ILessonResponse {
   lessons: ILessonExerciseDetails[]; // list of lessons that will be generated
 }
+
+export interface ILesson {
+  dogId: string;
+  id: string;
+  lessonName: string; // name of the lesson (focus, recall, loose lead walking, etc.)
+  lessonObjectives: string[]; // what the lesson will cover
+  lessonReason: string; // why the lesson is important for that dog
+}
