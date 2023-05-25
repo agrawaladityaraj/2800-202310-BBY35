@@ -7,7 +7,7 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
-import ChatComponent from "@/components/ChatComponent";
+import ChatComponent from "@/components/Chat";
 import {
   ILessonsRequest,
   ILessonExerciseDetails,
