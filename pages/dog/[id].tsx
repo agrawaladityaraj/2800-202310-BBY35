@@ -14,6 +14,8 @@ import AuthWrapper from "@/components/AuthWrapper";
 import { IContext } from "@/models";
 import dogprofile from "@/assets/images/dogprofile.png";
 import Image from "next/image";
+import Link from "next/link";
+import ListItemText from "@mui/material";
 
 interface Vaccine {
   id: string;
@@ -152,8 +154,27 @@ function DogProfile() {
               <strong>Birthdate:</strong> {formattedBirthDate}
             </Typography>
             <Typography variant="subtitle1" fontSize={22}>
-              <strong>Age:</strong> {calculateAge(new Date(formattedBirthDate))} years
+              <strong>Age:</strong> {calculateAge(new Date(formattedBirthDate))}{" "}
+              years
             </Typography>
+          </Box>
+          <Box
+            ml={3}
+            mr={2}
+            mt={2}
+            mb={6}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+          >
+            <Button
+              variant="contained"
+              href={`/lessons/${dog.id}`}
+              size="medium"
+              color="secondary"
+            >
+              Training Lessons
+            </Button>
           </Box>
           {!dog.vaccines.length ? (
             <></>
