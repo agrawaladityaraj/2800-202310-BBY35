@@ -5,8 +5,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import DogGif from "@/assets/images/dog.gif";
 import styles from "/styles/Homepage.module.css";
-import { Title } from '@mantine/core';
-
+import { Title } from "@mantine/core";
 
 import JourneyStepper from "@/components/JourneyStepper";
 import useSmall from "@/Hooks/useSmall";
@@ -205,10 +204,10 @@ export default function HomeButtons() {
       </div>
       <br />
 
-      <div style={{display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Box width="80%">
           {getStepsContent(activeStep)}
-          <div style={{ marginTop: "1em"}}>
+          <div style={{ marginTop: "1em" }}>
             <DailyTip />
           </div>
         </Box>
