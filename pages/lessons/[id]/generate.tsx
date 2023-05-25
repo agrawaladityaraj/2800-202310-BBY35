@@ -72,10 +72,6 @@ export default function GenerateDogLesson() {
     value: [],
     error: "",
   });
-  const [numberOfLessons, setNumberOfLessons] = useState<ITextField>({
-    value: "",
-    error: "",
-  });
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async () => {
@@ -111,13 +107,6 @@ export default function GenerateDogLesson() {
         });
         error = true;
       }
-      if (!numberOfLessons.value) {
-        setNumberOfLessons({
-          ...numberOfLessons,
-          error: "Number of lessons is required!",
-        });
-        error = true;
-      }
       if (error) {
         return;
       }
@@ -128,7 +117,7 @@ export default function GenerateDogLesson() {
         energy: energyLevel.value,
         behaviour: stringArrayToString(behaviour.value),
         motivation: stringArrayToString(motivators.value),
-        numberOfLessons: parseInt(numberOfLessons.value),
+        numberOfLessons: 1,
         ownerGoals: stringArrayToString(ownerGoals.value),
       });
       router.push(`/lessons/${dog.id}`);
@@ -269,20 +258,6 @@ export default function GenerateDogLesson() {
                 value: "Reduce Separation Anxiety",
               },
             ]}
-          />
-          <Select
-            label="Number of Lessons"
-            placeholder="How many lessons do you want to generate?"
-            data={[
-              { label: "4", value: "4" },
-              { label: "8", value: "8" },
-              { label: "12", value: "12" },
-            ]}
-            value={numberOfLessons.value}
-            onChange={(value) =>
-              setNumberOfLessons({ value: value ?? "", error: "" })
-            }
-            error={numberOfLessons.error ?? false}
           />
           <Button onClick={handleSubmit} size="sm" sx={{ marginTop: "0.5em" }}>
             Generate
