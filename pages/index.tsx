@@ -71,18 +71,14 @@ export default function Home() {
       </Typography>
 
       <Stack direction="row" spacing={2} mt={2}>
-        <Link href="/signup" passHref>
-          <Button variant="contained" color="secondary" size="large">
-            Signup
-          </Button>
-        </Link>
+        <Link href="/signup" passHref></Link>
         <Button
           onClick={() => signIn()}
           variant="contained"
           color="secondary"
           size="large"
         >
-          Login
+          Sign In
         </Button>
       </Stack>
     </Box>
