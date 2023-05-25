@@ -21,6 +21,7 @@ const EmptyDog: IDog = {
     minLongevity: 0,
     maxLongevity: 0,
   },
+  generatingLessons: false,
 };
 
 export default EmptyDog;

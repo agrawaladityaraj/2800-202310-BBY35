@@ -3,7 +3,7 @@ import openai from "@/Utils/openaiConfig";
 // import route handler types from next
 import { NextApiRequest, NextApiResponse } from "next";
 // methods that will create the correct prompt and parse the response from api
-import { generatePrompt, parseResponse } from "@/PromptUtils/lessonUtils";
+import { generatePrompt, parseResponse } from "@/Utils/lessonUtils";
 // import types for lesson request
 import { ILessonsRequest, ILessonResponse } from "@/models";
 

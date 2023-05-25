@@ -61,20 +61,21 @@ model VerificationToken {
 }
 
 model Dog {
-  id               String             @id @default(cuid())
-  stage            Int
-  name             String
-  breedId          String
-  birthDate        DateTime?
-  ownerId          String
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
-  owner            User               @relation(fields: [ownerId], references: [id])
-  breed            DogBreed           @relation(fields: [breedId], references: [id])
-  vaccines         Vaccine[]
-  trainingVideos   DogTrainingVideo[]
-  medicalDocuments MedicalDocument[]
-  lessons          Lesson[]
+  id                String             @id @default(cuid())
+  stage             Int
+  name              String
+  breedId           String
+  birthDate         DateTime?
+  ownerId           String
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  generatingLessons Boolean            @default(false)
+  owner             User               @relation(fields: [ownerId], references: [id])
+  breed             DogBreed           @relation(fields: [breedId], references: [id])
+  vaccines          Vaccine[]
+  trainingVideos    DogTrainingVideo[]
+  medicalDocuments  MedicalDocument[]
+  lessons           Lesson[]
 
   @@index([ownerId])
 }
