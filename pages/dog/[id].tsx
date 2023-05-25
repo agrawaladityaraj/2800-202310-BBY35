@@ -35,7 +35,6 @@ interface Dog {
   pictureUrl: string;
   breed: DogBreed;
   vaccines: Vaccine[];
-  // Add more properties as needed
 }
 
 function DogProfile() {
@@ -67,7 +66,7 @@ function DogProfile() {
         fetchDogData();
       }
     }
-  }, [id, user]);
+  }, [id, user, dog]);
 
   if (!dog) {
     return <div>Loading...</div>;
