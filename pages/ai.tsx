@@ -10,10 +10,10 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
-import { ILessonRequest, ILessonResponse } from "@/models/index";
+import { ILessonsRequest, ILessonResponse } from "@/models/index";
 
 export default function MyForm() {
-  const [lessonInfo, setLessonInfo] = useState<ILessonRequest>({
+  const [lessonInfo, setLessonInfo] = useState<ILessonsRequest>({
     focus: "",
     breed: "",
     age: "",
