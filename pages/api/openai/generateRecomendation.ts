@@ -3,10 +3,7 @@ import openai from "@/Utils/openaiConfig";
 // route handler types are imported from next
 import { NextApiRequest, NextApiResponse } from "next";
 // import methods that will create the correct prompt and parse the response from api
-import {
-  generatePrompt,
-  parseResponse,
-} from "@/PromptUtils/reccomendationUtils";
+import { generatePrompt, parseResponse } from "@/Utils/reccomendationUtils";
 // import the type used for conversing with the API
 import { IChatGPTMessage } from "@/models";
 

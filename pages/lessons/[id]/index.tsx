@@ -10,6 +10,7 @@ import {
   ActionIcon,
   Button,
   Text,
+  Tooltip,
 } from "@mantine/core";
 import { ExternalLink } from "tabler-icons-react";
 
@@ -92,11 +93,19 @@ export default function DogLessons() {
         ) : (
           <Text>No lessons generated yet!</Text>
         )}
-        <Link href={`/lessons/${id}/generate`}>
-          <Button sx={{ marginTop: "0.5em" }} size="sm">
-            Generate {lessons.length ? "More " : ""}Lessons
-          </Button>
-        </Link>
+        {dog.generatingLessons ? (
+          <Tooltip label="This may take upto a minute...">
+            <Button loading sx={{ marginTop: "0.5em" }} size="sm">
+              Generating Lessons, check back after a few minutes...
+            </Button>
+          </Tooltip>
+        ) : (
+          <Link href={`/lessons/${id}/generate`}>
+            <Button sx={{ marginTop: "0.5em" }} size="sm">
+              Generate {lessons.length ? "More " : ""}Lessons
+            </Button>
+          </Link>
+        )}
       </Stack>
     </AuthWrapper>
   );

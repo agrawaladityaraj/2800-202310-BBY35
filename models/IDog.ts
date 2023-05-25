@@ -7,4 +7,5 @@ export interface IDog {
   breedId: string;
   pictureUrl: string;
   breed: IDogBreed;
+  generatingLessons: boolean;
 }
