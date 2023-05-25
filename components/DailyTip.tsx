@@ -7,12 +7,12 @@ const [value, setValue] = useState<string>("");
 const [conversation, setConversation] = useState<IChatGPTMessage[]>([]);
 const [buttonDisabled, setButtonDisabled] = useState(false);
 
-useEffect(() => {
-  const disabledStatus = localStorage.getItem("buttonDisabled");
-  if (disabledStatus) {
-    setButtonDisabled(JSON.parse(disabledStatus));
-  }
-}, []);
+// useEffect(() => {
+//   const disabledStatus = localStorage.getItem("buttonDisabled");
+//   if (disabledStatus) {
+//     setButtonDisabled(JSON.parse(disabledStatus));
+//   }
+// }, []);
 
 
  // This is the function that sends the message to the chatbot
@@ -36,9 +36,9 @@ useEffect(() => {
     setValue("");
     setConversation([...chatHistory, message]);
 
-    setTimeout(() => {
-      setButtonDisabled(false);
-    }, 24 * 60 * 60 * 1000);
+    // setTimeout(() => {
+    //   setButtonDisabled(false);
+    // }, 1);
   };
 
   useEffect(() => {
@@ -47,9 +47,9 @@ useEffect(() => {
 
   return (
     <>
-      <Box paddingTop={5} textAlign="center">
+      <Box>
         <Button variant="contained"
-          color="primary"
+          color="secondary"
           onClick={sendMessage}
           disabled={buttonDisabled}
         >
