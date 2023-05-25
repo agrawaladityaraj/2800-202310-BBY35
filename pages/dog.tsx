@@ -35,6 +35,7 @@ function DogPage() {
 
   return (
     <AuthWrapper>
+      <>
       <div style={{ margin: "16px" }}>
         <Typography variant="h2" component="h1" m={3}>
           My Dogs
@@ -88,6 +89,7 @@ function DogPage() {
           Add a new dog
         </Button>
       </Box>
+      </>
     </AuthWrapper>
   );
 }
