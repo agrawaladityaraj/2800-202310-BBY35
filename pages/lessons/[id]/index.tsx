@@ -1,7 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import axios from "axios";
-import { Stack, Title, List, Group, ActionIcon } from "@mantine/core";
+import {
+  Stack,
+  Title,
+  List,
+  Group,
+  ActionIcon,
+  Button,
+  Text,
+} from "@mantine/core";
 import { ExternalLink } from "tabler-icons-react";
 
 import AuthWrapper from "@/components/AuthWrapper";
@@ -62,23 +71,32 @@ export default function DogLessons() {
         <Title sx={{ marginBottom: "0.45em" }} order={3}>
           Lessons for {dog.name}, the {dog.breed.breed}
         </Title>
-        <List>
-          {lessons.map((lesson: ILesson) => (
-            <List.Item key={lesson.id}>
-              <Group sx={{ "&:hover": { textDecoration: "underline" } }}>
-                <a
-                  style={{ color: "#212121", textDecoration: "none" }}
-                  href={`/lessons/lesson/${lesson.id}`}
-                >
-                  {lesson.lessonName}
-                </a>
-                <ActionIcon variant="transparent">
-                  <ExternalLink size="1rem" />
-                </ActionIcon>
-              </Group>
-            </List.Item>
-          ))}
-        </List>
+        {lessons.length ? (
+          <List>
+            {lessons.map((lesson: ILesson) => (
+              <List.Item key={lesson.id}>
+                <Group sx={{ "&:hover": { textDecoration: "underline" } }}>
+                  <a
+                    style={{ color: "#212121", textDecoration: "none" }}
+                    href={`/lessons/lesson/${lesson.id}`}
+                  >
+                    {lesson.lessonName}
+                  </a>
+                  <ActionIcon variant="transparent">
+                    <ExternalLink size="1rem" />
+                  </ActionIcon>
+                </Group>
+              </List.Item>
+            ))}
+          </List>
+        ) : (
+          <Text>No lessons generated yet!</Text>
+        )}
+        <Link href={`/lessons/${id}/generate`}>
+          <Button sx={{ marginTop: "0.5em" }} size="sm">
+            Generate {lessons.length ? "More " : ""}Lessons
+          </Button>
+        </Link>
       </Stack>
     </AuthWrapper>
   );
