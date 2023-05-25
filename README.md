@@ -14,7 +14,7 @@
 
 ## Project Description
 
-Our team, is developing IntelliPaws which helps potential or current dog users with their dog, the app can reccomend a dog breed based on your lifestyle, provide training and it can provide some medical help
+Our team is developing IntelliPaws which helps potential or current dog users with their dog, the app can reccomend a dog breed based on your lifestyle, provide training with exercises and it can help you learn more about your dog.
 
 ## Technologies Used
 
