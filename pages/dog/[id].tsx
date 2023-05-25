@@ -105,6 +105,25 @@ function DogProfile() {
     }
   );
 
+  function calculateAge(formattedBirthDate: Date): number {
+    const today = new Date();
+    const birthdateObj = new Date(formattedBirthDate);
+    let age = today.getFullYear() - birthdateObj.getFullYear();
+
+    // Check if the dog's birthday has occurred this year
+    const isBirthdayPassed =
+      today.getMonth() > birthdateObj.getMonth() ||
+      (today.getMonth() === birthdateObj.getMonth() &&
+        today.getDate() >= birthdateObj.getDate());
+
+    // If the dog's birthday hasn't passed yet this year, subtract 1 from the age
+    if (!isBirthdayPassed) {
+      age--;
+    }
+
+    return age;
+  }
+
   return (
     <AuthWrapper>
       <Grid
@@ -132,6 +151,9 @@ function DogProfile() {
             </Typography>
             <Typography variant="subtitle1" fontSize={22}>
               <strong>Birthdate:</strong> {formattedBirthDate}
+            </Typography>
+            <Typography variant="subtitle1" fontSize={22}>
+              <strong>Age:</strong> {calculateAge(new Date(formattedBirthDate))} years
             </Typography>
           </Box>
           {!dog.vaccines.length ? (
