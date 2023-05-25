@@ -1,6 +1,6 @@
 <div align="center">
-<h1> IntelliPaws BBY-35 </h1>
-    <img src="https://github.com/agrawaladityaraj/2800-202310-BBY35/tree/main/assets/images/Logo.png" alt="Logo" width="80" height="80">
+<h1> IntelliPaws - BBY-35 </h1>
+    <img src="https://raw.githubusercontent.com/agrawaladityaraj/2800-202310-BBY35/main/assets/images/Logo.png" alt="Logo" width="80" height="80">
 </div>
 
 ## Team Members
