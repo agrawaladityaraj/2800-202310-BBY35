@@ -1,3 +1,5 @@
+import { IExercise } from "./IExercise";
+
 export interface ILessonsRequest {
   age: string; // how old is the dog
   breed: string; // what breed is the dog
@@ -24,4 +26,5 @@ export interface ILesson {
   lessonName: string; // name of the lesson (focus, recall, loose lead walking, etc.)
   lessonObjectives: string[]; // what the lesson will cover
   lessonReason: string; // why the lesson is important for that dog
+  exercises: IExercise[];
 }
