@@ -58,7 +58,7 @@ Below are the technologies used in this project with their respective documentat
 3. **IntelliPaws ChatBot:** GPT-3.5-turbo model is used to generate chat messages and respond to user queries in the application to assist users in dog related questions.
 4. **Lesson / Exercise Generation:** GPT-3.5-turbo model is used for generating personalized dog training lessons and exercises, as well as providing breed-specific recommendations.
 5. **Dog Breed Reccomendation:** GPT-3.5-turbo model is used to create a guided conversation with the user to determine the best dog breed for them.
-6. **Limitations:** The ai may return incorrect JSON format, we fixed this by using a try catch block and making prompt that to correct the JSON format. The chatbot will also answer questions that are unrealted to what it is supposed to talk about.
+6. **Limitations:** The ai may return incorrect JSON format, we fixed this by using a try catch block and making another prompt for the ai to correct the JSON format. The chatbot will also answer questions that are unrealted to what it is meant to talk about.
 
 ## Listing of File Contents
 
