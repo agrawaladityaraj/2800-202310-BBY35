@@ -1,6 +1,13 @@
 import { useEffect, useState, useContext } from "react";
 import Link from "next/link";
-import { Typography, List, ListItem, ListItemText } from "@mui/material";
+import {
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+  Box,
+  Button,
+} from "@mui/material";
 
 import Context from "@/Context/Context";
 import AuthWrapper from "@/components/AuthWrapper";
@@ -28,6 +35,7 @@ function DogPage() {
 
   return (
     <AuthWrapper>
+      <>
       <div style={{ margin: "16px" }}>
         <Typography variant="h2" component="h1" m={3}>
           My Dogs
@@ -71,6 +79,17 @@ function DogPage() {
           />
         </div>
       </div>
+      <Box>
+        <Button
+          component={Link}
+          href="/add_dog/adopted"
+          variant="contained"
+          color="primary"
+        >
+          Add a new dog
+        </Button>
+      </Box>
+      </>
     </AuthWrapper>
   );
 }
