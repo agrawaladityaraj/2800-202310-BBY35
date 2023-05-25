@@ -61,11 +61,12 @@ export default function HomeButtons() {
               </Title>
               <Button
                 component={Link}
-                href="/reccomendation"
+                href="/add_dog/index"
                 variant="contained"
                 color="secondary"
+                style={{ marginTop: "1em" }}
               >
-                Ask me questions here!
+                Find a dog here!
               </Button>
             </div>
           </>
@@ -88,6 +89,7 @@ export default function HomeButtons() {
                 href="/add_dog/adopted"
                 variant="contained"
                 color="secondary"
+                style={{ marginTop: "1em" }}
               >
                 {"Enter your dog's information here"}
               </Button>
@@ -111,9 +113,10 @@ export default function HomeButtons() {
               </Title>
               <Button
                 component={Link}
-                href="/dog"
+                href="/add_dog/training"
                 variant="contained"
                 color="secondary"
+                style={{ marginTop: "1em" }}
               >
                 {"See more training"}
               </Button>
@@ -130,14 +133,13 @@ export default function HomeButtons() {
                 flexDirection: "column",
               }}
             >
-              <Title order={4}>
-                {"Stay up to date on your dog's health!"}
-              </Title>
+              <Title order={4}>{"Stay up to date on your dog's health!"}</Title>
               <Button
                 component={Link}
-                href="/user_profile"
+                href="/dog"
                 variant="contained"
                 color="secondary"
+                style={{ marginTop: "1em" }}
               >
                 {"View your dog's profile"}
               </Button>
@@ -202,27 +204,14 @@ export default function HomeButtons() {
         </Box>
       </div>
       <br />
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        {getStepsContent(activeStep)}
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div
-          style={{
-            paddingTop: "25px",
-            flexDirection: "column",
-            justifyContent: "center",
-          }}
-        >
-          <div>
+
+      <div style={{display: "flex", justifyContent: "center" }}>
+        <Box width="80%">
+          {getStepsContent(activeStep)}
+          <div style={{ marginTop: "1em"}}>
             <DailyTip />
           </div>
-        </div>
+        </Box>
       </div>
     </>
   );
