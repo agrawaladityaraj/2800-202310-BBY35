@@ -67,6 +67,16 @@ function DogPage() {
                 </Link>
               </ListItem>
             ))}
+            <Box mt={1}>
+              <Button
+                component={Link}
+                href="/add_dog/adopted"
+                variant="contained"
+                color="secondary"
+              >
+                Add a new dog
+              </Button>
+            </Box>
           </List>
           <div style={{ textAlign: "center" }}>
             <Image
@@ -77,16 +87,6 @@ function DogPage() {
             />
           </div>
         </div>
-        <Box>
-          <Button
-            component={Link}
-            href="/add_dog/adopted"
-            variant="contained"
-            color="primary"
-          >
-            Add a new dog
-          </Button>
-        </Box>
       </>
     </AuthWrapper>
   );
