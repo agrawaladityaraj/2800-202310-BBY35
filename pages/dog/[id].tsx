@@ -146,10 +146,13 @@ function DogProfile() {
                   dog.vaccines.map((vaccine) => (
                     <ListItem key={vaccine.id}>
                       <Typography fontWeight="bold">
-                        {vaccine.name} -{" "}
+                        {vaccine.name + " Vaccine"}
                       </Typography>
                       <Typography>
-                        {new Date(vaccine.date).toLocaleDateString()}
+                        &nbsp;
+                      </Typography>
+                      <Typography>
+                        {"expires on "}{new Date(vaccine.date).toLocaleDateString()}
                       </Typography>
                     </ListItem>
                   ))}
@@ -168,7 +171,7 @@ function DogProfile() {
           </Box>
           <Box marginBottom={2} ml={3} mr={2}>
             <TextField
-              label="Vaccine Date"
+              label="Vaccine Expiry Date"
               type="date"
               fullWidth
               value={vaccineDate}

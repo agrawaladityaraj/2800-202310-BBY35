@@ -34,11 +34,11 @@ interface INavLink {
 }
 
 const leftNavLinks: INavLink[] = [
-  { href: "/about", label: "IntelliPaws", icon: <InfoIcon /> },
+  { href: "/homepage", label: "IntelliPaws", icon: <InfoIcon /> },
 ];
 
 const rightNavLinks: INavLink[] = [
-  { href: "/user", label: "Account", icon: <ContactlessIcon /> },
+  { href: "/user_profile", label: "Account", icon: <ContactlessIcon /> },
   { href: "/contact", label: "Contact", icon: <PermContactCalendarIcon /> },
 ];
 
