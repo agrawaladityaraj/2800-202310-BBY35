@@ -137,6 +137,7 @@ export default function Chat() {
               placeholder="Type here..."
               value={value}
               fullWidth
+              multiline
               variant="outlined"
               onChange={(e) => setValue(e.target.value)}
               onKeyDown={handleKeyDown}

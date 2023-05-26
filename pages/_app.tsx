@@ -1,4 +1,5 @@
 import { SessionProvider } from "next-auth/react";
+import Head from "next/head";
 import {
   createTheme,
   responsiveFontSizes,
@@ -43,28 +44,33 @@ export default function MyAppBase({
   pageProps: { session, ...pageProps },
 }: any) {
   return (
-    <SessionProvider session={session}>
-      <State>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <MountedWrapper>
-            <Box
-              sx={{
-                minHeight: "100vh",
-                display: "flex",
-                flexDirection: "column",
-                backgroundColor: (theme) => theme.palette.primary.main,
-              }}
-            >
-              <Navbar />
-              <Component {...pageProps} />
-              <Footer />
-              <Alert />
-              <Chat />
-            </Box>
-          </MountedWrapper>
-        </ThemeProvider>
-      </State>
-    </SessionProvider>
+    <>
+      <Head>
+        <title>IntelliPaws</title>
+      </Head>
+      <SessionProvider session={session}>
+        <State>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <MountedWrapper>
+              <Box
+                sx={{
+                  minHeight: "100vh",
+                  display: "flex",
+                  flexDirection: "column",
+                  backgroundColor: (theme) => theme.palette.primary.main,
+                }}
+              >
+                <Navbar />
+                <Component {...pageProps} />
+                <Footer />
+                <Alert />
+                <Chat />
+              </Box>
+            </MountedWrapper>
+          </ThemeProvider>
+        </State>
+      </SessionProvider>
+    </>
   );
 }

@@ -60,7 +60,7 @@ export default function HomeButtons() {
               </Title>
               <Button
                 component={Link}
-                href="/add_dog/index"
+                href="/recommendation"
                 variant="contained"
                 color="secondary"
                 style={{ marginTop: "1em" }}
