@@ -18,8 +18,6 @@ import {
   Divider,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import ContactlessIcon from "@mui/icons-material/Contactless";
-import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import InfoIcon from "@mui/icons-material/Info";
 
 import useSmall from "@/Hooks/useSmall";
@@ -28,6 +26,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PetsIcon from "@mui/icons-material/Pets";
 import Logo from "@/assets/images/Logo.png";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import HelpIcon from "@mui/icons-material/Help";
 
 interface INavLink {
   href: string;
@@ -37,12 +36,13 @@ interface INavLink {
 
 const leftNavLinks: INavLink[] = [
   { href: "/homepage", label: "IntelliPaws", icon: <InfoIcon /> },
-  { href: "/user_profile", label: "Account", icon: <AccountCircleIcon /> },
+  { href: "/user_profile", label: "My Account", icon: <AccountCircleIcon /> },
 ];
 
 const rightNavLinks: INavLink[] = [
   { href: "/dog", label: "My Dogs", icon: <PetsIcon /> },
-  { href: "/add_dog", label: "Add new Dog", icon: <AddCircleIcon /> },
+  { href: "/reccomendation", label: "Recommendation", icon: <HelpIcon /> },
+  { href: "/add_dog", label: "Add Dog", icon: <AddCircleIcon /> },
 ];
 
 interface Props {
