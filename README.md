@@ -47,9 +47,9 @@ Below are the technologies used in this project with their respective documentat
 
 ## How to use the product (Features)
 
-- **Training:** Users can access various dog training exercises and lessons, which are personalized based on their dog.
-- **Chatbot:** Users can chat with a chatbot to get personalized advice on anything dog related.
-- **PlaceHolder:** More features to be added in the future.
+- **Training:** After the user has added a dog to their account, they are able to generate lessons for that specific dog. You can do this by going to the dog's profile page and then pressing on the button 'Training Lessons', from that page you can generate lessons and exercises specific to you and your dogs requirements.
+- **Chatbot:** User's have the ability to intereact with a dog chatbot that can answer questions about dogs. You can access the chatbot by pressing the chat icon on the bottom right of the screen.
+- **Dog Breed Reccomender:** User's have the ability to find a dog breed that is best suited for them. You can access the dog breed reccomender by pressing the Reccomendation button on the top right of the screen.
 
 ## Use of AI
 
