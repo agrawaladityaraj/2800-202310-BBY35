@@ -1,7 +1,6 @@
 <div align="center">
 <h1> IntelliPaws - BBY-35 </h1>
     <img src="https://raw.githubusercontent.com/agrawaladityaraj/2800-202310-BBY35/main/assets/images/Logo.png" alt="Logo" width="80" height="80">
-</div>
 
 ## Team Members
 
@@ -11,6 +10,10 @@
 | [Michelle](https://github.com/michelle-0)     | Frontend Developer, QA Engineer   | [GitHub](https://github.com/michelle-0)       | [LinkedIn](https://www.linkedin.com/in/michelle-hung-596978262/)      |
 | [Aditya](https://github.com/agrawaladityaraj) | Lead Developer                    | [GitHub](https://github.com/agrawaladityaraj) | [LinkedIn](https://www.linkedin.com/in/aditya-raj-agrawal-6b43971b5/) |
 | [Shawn](https://github.com/shawnbirring)      | Project Manager, AI Integration   | [GitHub](https://github.com/shawnbirring)     | [LinkedIn](https://www.linkedin.com/in/shawnbirring/)                 |
+
+</div>
+
+<br><br>
 
 ## Project Description
 
@@ -58,136 +61,182 @@ Below are the technologies used in this project with their respective documentat
 3. **IntelliPaws ChatBot:** GPT-3.5-turbo model is used to generate chat messages and respond to user queries in the application to assist users in dog related questions.
 4. **Lesson / Exercise Generation:** GPT-3.5-turbo model is used for generating personalized dog training lessons and exercises, as well as providing breed-specific recommendations.
 5. **Dog Breed Reccomendation:** GPT-3.5-turbo model is used to create a guided conversation with the user to determine the best dog breed for them.
-6. **Limitations:** The ai may return incorrect JSON format, we fixed this by using a try catch block and making another prompt for the ai to correct the JSON format. The chatbot will also answer questions that are unrealted to what it is meant to talk about.
+6. **JSON Corrector:** GPT-3.5-turbo model is used to correct the JSON format of the lesson or exercise response from the AI if, there is an error in the JSON format.
+7. **Limitations:** The ai may return incorrect JSON format, we fixed this by using a try catch block and making another prompt for the ai to correct the JSON format. The chatbot will also answer questions that are unrealted to what it is meant to talk about.
+
+## [Testing Plan](https://docs.google.com/spreadsheets/d/1KHAJUVA3D1ST2SEm9gBwG0M7ZtNuxa6V5H3eRXJXV4M/edit#gid=2048085743)
 
 ## Listing of File Contents
 
 ```bash
-.
-├── .env
-├── .env.local
-├── .env.example
-├── .eslintrc.json
-├── .gitignore
-├── next-env.d.ts
-├── next.config.js
-├── package-lock.json
-├── package.json
-├── README.md
-├── tsconfig.json
-├── assets
-│   └── images
-│       ├── dog.gif
-│       ├── dog1.png
-│       ├── dog3.gif
-│       ├── doggy4.jpg
-│       ├── dogprofile.png
-│       ├── Logo.png
-│       └── lostDog.png
-├── components
-│   ├── AddDog.tsx
-│   ├── Alert.tsx
-│   ├── AuthWrapper.tsx
-│   ├── ChatComponent.tsx
-│   ├── DailyTip.tsx
-│   ├── DogInformation.tsx
-│   ├── Exercise.tsx
-│   ├── Footer.tsx
-│   ├── JourneyStep.tsx
-│   ├── JourneyStepper.tsx
-│   ├── MountedWrapper.tsx
-│   ├── Navbar.tsx
-│   ├── Provider.tsx
-│   └── StyledStepper.tsx
-├── Constants
-│   ├── DogBehaviours.ts
-│   ├── EmptyDog.ts
-│   ├── EmptyDogBreed.ts
-│   ├── index.ts
-│   ├── InitialContext.ts
-│   └── InitialState.ts
-├── Context
-│   ├── Context.tsx
-│   ├── Reducer.tsx
-│   └── State.tsx
-├── dataset
-│   ├── dog_breeds.csv
-│   └── importCsvToPrisma.js
-├── Hooks
-│   └── useSmall.tsx
-├── lib
-│   ├── fetchDogBreeds.ts
-│   └── prisma.ts
-├── models
-│   ├── IAlert.ts
-│   ├── IChatGPTMessage.ts
-│   ├── IContext.ts
-│   ├── IDog.ts
-│   ├── IDogBreed.ts
-│   ├── IExercise.ts
-│   ├── ILesson.ts
-│   ├── index.ts
-│   ├── IState.ts
-│   └── IUser.ts
-├── pages
-│   ├── 404.tsx
-│   ├── dog.tsx
-│   ├── dogbreeds.tsx
-│   ├── homepage.tsx
-│   ├── index.tsx
-│   ├── reccomendation.tsx
-│   ├── temphome.tsx
-│   ├── training.tsx
-│   ├── user_profile.tsx
-│   ├── _app.tsx
-│   ├── add_dog
-│   │   ├── adopted.tsx
-│   │   ├── health.tsx
-│   │   ├── index.tsx
-│   │   └── training.tsx
-│   ├── api
-│   │   ├── auth
-│   │   │   └── [...nextauth].ts
-│   │   ├── dog
-│   │   │   ├── add.ts
-│   │   │   └── [ownerId].tsx
-│   │   ├── openai
-│   │   │   ├── generateChat.ts
-│   │   │   ├── generateExercises.ts
-│   │   │   ├── generateLessons.ts
-│   │   │   └── generateRecomendation.ts
-│   │   ├── user
-│   │   │   └── [email].ts
-│   │   └── vaccine
-│   │       └── add.ts
-│   ├── dog
-│   │   └── [id].tsx
-│   └── lessons
-│       └── [id]
-│           ├── generate.tsx
-│           └── index.tsx
-├── prisma
-│   ├── schema.prisma
-│   └── migrations
-│       ├── 20230511214237_dogbreedremoval
-│       │   └── migration.sql
-│       ├── 20230511214415_restore
-│       │   └── migration.sql
-│       └── 20230511214754_
-│           └── migration.sql
-├── PromptUtils
-│   ├── chatUtils.ts
-│   ├── exerciseUtils.ts
-│   ├── lessonUtils.ts
-│   └── reccomendationUtils.ts
-├── public
-│   ├── favicon.ico
-│   ├── next.svg
-│   └── vercel.svg
-├── styles
-│   ├── globals.css
-│   └── Homepage.module.css
-└── Utils
-    ├── correctJSON.ts
-    └── openaiConfig.ts
+│   .env
+│   .env.example
+│   .env.local
+│   .eslintrc.json
+│   .gitignore
+│   next-env.d.ts
+│   next.config.js
+│   package.json
+│   README.md
+│   tsconfig.json
+│   vercel.json
+│
+├───assets
+│   └───images
+│           chatbot.png
+│           dog.gif
+│           dog1.png
+│           dog3.gif
+│           doggy4.jpg
+│           dogprofile.png
+│           dogwithfriends.png
+│           Logo.png
+│           lostDog.png
+│
+├───components
+│       AccordionLabel.tsx
+│       AddDog.tsx
+│       Alert.tsx
+│       AuthWrapper.tsx
+│       Chat.tsx
+│       DailyTip.tsx
+│       DogInformation.tsx
+│       Exercise.tsx
+│       Footer.tsx
+│       JourneyStep.tsx
+│       JourneyStepper.tsx
+│       MountedWrapper.tsx
+│       Navbar.tsx
+│       Provider.tsx
+│       RickRoll.tsx
+│       StyledStepper.tsx
+│
+├───Constants
+│       DogBehaviours.ts
+│       EmptyDog.ts
+│       EmptyDogBreed.ts
+│       EmptyLesson.ts
+│       index.ts
+│       InitialContext.ts
+│       InitialState.ts
+│
+├───Context
+│       Context.tsx
+│       Reducer.tsx
+│       State.tsx
+│
+├───dataset
+│       dog_breeds.csv
+│       importCsvToPrisma.js
+│
+├───defer
+│       generateTraining.ts
+│
+├───Hooks
+│       useSmall.tsx
+│
+├───lib
+│       fetchDogBreeds.ts
+│       prisma.ts
+│
+├───models
+│       IAlert.ts
+│       IChatGPTMessage.ts
+│       IContext.ts
+│       IDog.ts
+│       IDogBreed.ts
+│       IExercise.ts
+│       ILesson.ts
+│       index.ts
+│       IState.ts
+│       IUser.ts
+│
+├───pages
+│   │   404.tsx
+│   │   dog.tsx
+│   │   dogbreeds.tsx
+│   │   homepage.tsx
+│   │   index.tsx
+│   │   oldhome.tsx
+│   │   recommendation.tsx
+│   │   training.tsx
+│   │   user_profile.tsx
+│   │   _app.tsx
+│   │
+│   ├───add_dog
+│   │       adopted.tsx
+│   │       health.tsx
+│   │       index.tsx
+│   │       training.tsx
+│   │
+│   ├───api
+│   │   │   fetchdogbreeds.ts
+│   │   │
+│   │   ├───auth
+│   │   │       [...nextauth].ts
+│   │   │
+│   │   ├───dog
+│   │   │   │   add.ts
+│   │   │   │   [ownerId].ts
+│   │   │   │
+│   │   │   └───lessons
+│   │   │       │   [id].ts
+│   │   │       │
+│   │   │       └───lesson
+│   │   │               [id].ts
+│   │   │
+│   │   ├───openai
+│   │   │   │   generateChat.ts
+│   │   │   │   generateExercises.ts
+│   │   │   │   generateRecomendation.ts
+│   │   │   │
+│   │   │   └───generateLessons
+│   │   │           index.ts
+│   │   │           [dogId].ts
+│   │   │
+│   │   ├───user
+│   │   │       [email].ts
+│   │   │
+│   │   └───vaccine
+│   │           add.ts
+│   │
+│   ├───dog
+│   │       [id].tsx
+│   │
+│   └───lessons
+│       ├───lesson
+│       │       [id].tsx
+│       │
+│       └───[id]
+│               generate.tsx
+│               index.tsx
+│
+├───prisma
+│   │   schema.prisma
+│   │
+│   └───migrations
+│       ├───20230511214237_dogbreedremoval
+│       │       migration.sql
+│       │
+│       ├───20230511214415_restore
+│       │       migration.sql
+│       │
+│       └───20230511214754_
+│               migration.sql
+│
+├───public
+│       favicon.ico
+│
+├───styles
+│       globals.css
+│       Homepage.module.css
+│
+└───Utils
+        chatUtils.ts
+        correctJSON.ts
+        exerciseUtils.ts
+        generateTraining.ts
+        lessonUtils.ts
+        openaiConfig.ts
+        reccomendationUtils.ts
 ```

@@ -49,7 +49,7 @@ const Footer = () => {
           <Stack spacing={2}>
             <Link
               style={{ textDecoration: "none" }}
-              href="/about"
+              href="https://github.com/agrawaladityaraj/2800-202310-BBY35"
               passHref={true}
             >
               <Typography
