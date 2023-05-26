@@ -15,6 +15,8 @@ import {
 import { ExternalLink } from "tabler-icons-react";
 
 import AuthWrapper from "@/components/AuthWrapper";
+import RickRoll from "@/components/RickRoll";
+import useSmall from "@/Hooks/useSmall";
 
 import Context from "@/Context/Context";
 import Constants from "@/Constants";
@@ -24,9 +26,11 @@ import { IContext, IDog, ILesson } from "@/models";
 export default function DogLessons() {
   const router = useRouter();
   const { id } = router.query;
+  const small = useSmall(600);
 
   const [dog, setDog] = useState<IDog>(Constants.EmptyDog);
   const [lessons, setLessons] = useState<ILesson[]>([]);
+  const [open, setOpen] = useState<boolean>(false);
   const { user, setAlert }: IContext = useContext(Context);
 
   const fetchDogData = async (userId: string) => {
@@ -94,11 +98,22 @@ export default function DogLessons() {
           <Text>No lessons generated yet!</Text>
         )}
         {dog.generatingLessons ? (
-          <Tooltip label="This may take upto a minute...">
-            <Button loading sx={{ marginTop: "0.5em" }} size="sm">
-              Generating Lessons, check back after a few minutes...
-            </Button>
-          </Tooltip>
+          <Stack spacing={4}>
+            <Tooltip label="This may take upto a minute...">
+              <Button loading sx={{ marginTop: "0.5em" }} size="sm">
+                Generating Lessons, check back after a few minutes...
+              </Button>
+            </Tooltip>
+            <Text fz="sm" sx={{ color: "#495057" }}>
+              Preview your lesson{" "}
+              <span
+                style={{ textDecoration: "underline", cursor: "pointer" }}
+                onClick={() => setOpen(true)}
+              >
+                here...
+              </span>
+            </Text>
+          </Stack>
         ) : (
           <Link href={`/lessons/${id}/generate`}>
             <Button sx={{ marginTop: "0.5em" }} size="sm">
@@ -106,6 +121,7 @@ export default function DogLessons() {
             </Button>
           </Link>
         )}
+        <RickRoll open={open} setOpen={setOpen} small={small} />
       </Stack>
     </AuthWrapper>
   );
