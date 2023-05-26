@@ -70,7 +70,7 @@ function DogPage() {
             <Box mt={1}>
               <Button
                 component={Link}
-                href="/add_dog/adopted"
+                href="/add_dog"
                 variant="contained"
                 color="secondary"
               >

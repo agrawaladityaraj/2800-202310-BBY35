@@ -18,7 +18,7 @@ const steps: IStep[] = [
       <JourneyStep
         title="Curiosity Stage"
         content="Hey there future pup parent! 🐾 Feeling the puppy love but not sure where to start? Don't worry, we've got you! Let's embark on a tail-wagging adventure to discover your dream dog breed. By understanding your lifestyle, preferences, and quirks, we'll make sure to find a furry match that's paw-sitively perfect! 🐶"
-        link="/add_dog/curious"
+        link="/recommendation"
         button="Sniff Out My Perfect Pup!"
       />
     ),
