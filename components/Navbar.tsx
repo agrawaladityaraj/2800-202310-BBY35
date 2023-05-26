@@ -41,7 +41,7 @@ const leftNavLinks: INavLink[] = [
 
 const rightNavLinks: INavLink[] = [
   { href: "/dog", label: "My Dogs", icon: <PetsIcon /> },
-  { href: "/reccomendation", label: "Recommendation", icon: <HelpIcon /> },
+  { href: "/recommendation", label: "Recommendation", icon: <HelpIcon /> },
   { href: "/add_dog", label: "Add Dog", icon: <AddCircleIcon /> },
 ];
 
