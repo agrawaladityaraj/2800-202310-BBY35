@@ -5,17 +5,13 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { ownerId } = req.query;
+  const { id } = req.query;
   if (req.method === "GET") {
-    const dogs = await prisma.dog.findMany({
-      include: {
-        breed: true,
-      },
+    const lessons = await prisma.lesson.findMany({
       where: {
-        ownerId: ownerId?.toString(),
+        dogId: id?.toString() ?? "",
       },
     });
-
-    res.status(200).json(dogs);
+    res.status(200).json(lessons);
   }
 }

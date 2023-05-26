@@ -61,19 +61,21 @@ model VerificationToken {
 }
 
 model Dog {
-  id               String             @id @default(cuid())
-  stage            Int
-  name             String
-  breedId          String
-  birthDate        DateTime?
-  ownerId          String
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
-  owner            User               @relation(fields: [ownerId], references: [id])
-  breed            DogBreed           @relation(fields: [breedId], references: [id])
-  vaccines         Vaccine[]
-  trainingVideos   DogTrainingVideo[]
-  medicalDocuments MedicalDocument[]
+  id                String             @id @default(cuid())
+  stage             Int
+  name              String
+  breedId           String
+  birthDate         DateTime?
+  ownerId           String
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  generatingLessons Boolean            @default(false)
+  owner             User               @relation(fields: [ownerId], references: [id])
+  breed             DogBreed           @relation(fields: [breedId], references: [id])
+  vaccines          Vaccine[]
+  trainingVideos    DogTrainingVideo[]
+  medicalDocuments  MedicalDocument[]
+  lessons           Lesson[]
 
   @@index([ownerId])
 }
@@ -145,4 +147,28 @@ model DogBreed {
   characterTraits      String
   commonHealthProblems String
   Dog                  Dog[]
+}
+
+model Lesson {
+  id               String     @id @default(cuid())
+  lessonName       String
+  lessonObjectives String[]
+  lessonReason     String
+  dogId            String
+  Dog              Dog        @relation(fields: [dogId], references: [id])
+  exercises        Exercise[]
+
+  @@index([dogId])
+}
+
+model Exercise {
+  id        String   @id @default(cuid())
+  name      String
+  objective String
+  steps     String[]
+  tips      String[]
+  lessonId  String
+  Lesson    Lesson   @relation(fields: [lessonId], references: [id])
+
+  @@index([lessonId])
 }

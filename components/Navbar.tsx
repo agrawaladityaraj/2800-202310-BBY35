@@ -18,14 +18,15 @@ import {
   Divider,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import ContactlessIcon from "@mui/icons-material/Contactless";
-import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import InfoIcon from "@mui/icons-material/Info";
 
 import useSmall from "@/Hooks/useSmall";
 import MountedWrapper from "@/components/MountedWrapper";
-
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import PetsIcon from "@mui/icons-material/Pets";
 import Logo from "@/assets/images/Logo.png";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import HelpIcon from "@mui/icons-material/Help";
 
 interface INavLink {
   href: string;
@@ -34,12 +35,14 @@ interface INavLink {
 }
 
 const leftNavLinks: INavLink[] = [
-  { href: "/about", label: "IntelliPaws", icon: <InfoIcon /> },
+  { href: "/homepage", label: "IntelliPaws", icon: <InfoIcon /> },
+  { href: "/user_profile", label: "My Account", icon: <AccountCircleIcon /> },
 ];
 
 const rightNavLinks: INavLink[] = [
-  { href: "/user", label: "Account", icon: <ContactlessIcon /> },
-  { href: "/contact", label: "Contact", icon: <PermContactCalendarIcon /> },
+  { href: "/dog", label: "My Dogs", icon: <PetsIcon /> },
+  { href: "/recommendation", label: "Recommendation", icon: <HelpIcon /> },
+  { href: "/add_dog", label: "Add Dog", icon: <AddCircleIcon /> },
 ];
 
 interface Props {

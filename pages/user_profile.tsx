@@ -1,5 +1,6 @@
 import { Typography, Grid, Button, Avatar } from "@mui/material";
-import { Box } from "@mui/system";
+import { Box } from "@mui/material";
+import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 
 export default function UserProfile() {
@@ -43,6 +44,18 @@ export default function UserProfile() {
         <Typography variant="body1" style={{ marginBottom: "1em" }}>
           {data?.user?.email}
         </Typography>
+        <Box marginBottom="1em">
+          <Link href="/dog" passHref>
+            <Button
+              variant="contained"
+              fullWidth
+              color="secondary"
+              size="small"
+            >
+              My Dogs
+            </Button>
+          </Link>
+        </Box>
         <Button
           variant="contained"
           fullWidth
