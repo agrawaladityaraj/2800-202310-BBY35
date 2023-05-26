@@ -1,21 +1,21 @@
 import { useState, useEffect } from "react";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, Dialog, DialogContent } from "@mui/material";
 import type { IChatGPTMessage } from "@/models/index";
 
 export default function ChatComponent() {
-const [value, setValue] = useState<string>("");
-const [conversation, setConversation] = useState<IChatGPTMessage[]>([]);
-const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [value, setValue] = useState<string>("");
+  const [conversation, setConversation] = useState<IChatGPTMessage[]>([]);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [open, setOpen] = useState(false);
 
-// useEffect(() => {
-//   const disabledStatus = localStorage.getItem("buttonDisabled");
-//   if (disabledStatus) {
-//     setButtonDisabled(JSON.parse(disabledStatus));
-//   }
-// }, []);
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
 
- // This is the function that sends the message to the chatbot
   const sendMessage = async () => {
     setButtonDisabled(true);
     const chatHistory: IChatGPTMessage[] = [
@@ -30,15 +30,11 @@ const [buttonDisabled, setButtonDisabled] = useState(false);
       body: JSON.stringify({ messages: chatHistory }),
     });
 
-    // This is the response from the chatbot, also updates the conversation
     const data = await response.json();
     const message: IChatGPTMessage = data;
     setValue("");
     setConversation([...chatHistory, message]);
-
-    // setTimeout(() => {
-    //   setButtonDisabled(false);
-    // }, 1);
+    handleOpen();
   };
 
   useEffect(() => {
@@ -48,20 +44,26 @@ const [buttonDisabled, setButtonDisabled] = useState(false);
   return (
     <>
       <Box>
-        <Button variant="contained"
+        <Button
+          variant="contained"
           color="secondary"
           onClick={sendMessage}
           disabled={buttonDisabled}
         >
-          Tip of the Day!</Button>
-        {conversation.map((item, index) => {
-        if (item.role === "user") return null;
-        return (
-          <div key={index}>
-            <Typography variant="body1">{item.content}</Typography>
-          </div>
-        );
-      })}
+          Tip of the Day!
+        </Button>
+        <Dialog open={open} onClose={handleClose}>
+          <DialogContent>
+            {conversation.map((item, index) => {
+              if (item.role === "user") return null;
+              return (
+                <div key={index}>
+                  <Typography variant="body1">{item.content}</Typography>
+                </div>
+              );
+            })}
+          </DialogContent>
+        </Dialog>
       </Box>
     </>
   );
